@@ -48,7 +48,7 @@ class CreateController extends Controller
         }
         Create::insert($datosproductos);
 
-        return response()->json($datosproductos);
+        return redirect('productos');
 
     }
 

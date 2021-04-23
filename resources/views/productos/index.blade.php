@@ -1,9 +1,21 @@
 
+
+@extends('layouts.app-admin')     
+  @section('content')
       <head>
       
  
       </head>       
-      <a href="{{url('productos/create')}}">Nuevo Producto</a>
+      <a href="{{url('productos/create')}}" style="margin:15px;">Nuevo Producto</a>
+      <a href="{{url('productos/empresa')}}">Empresa</a>
+      <form  action="{{route('productos.index')}}" method="get">   
+<div class="input-group mb-3" >
+  <input type="text" class="form-control"placeholder="Busca aqui" name="texto" style="margin-top: 15px;">
+  <div class="input-group-append">
+    <button class="btn btn-success" type="submit" style="margin-top: 15px; ">Buscar</button>
+  </div>
+</div>
+        </form>
     <table class="table">
   <thead>
   
@@ -39,8 +51,10 @@
   </tbody>
 </table>
 
-
+{!! $creates->links() !!}
                 </div>
             </div>
         </div>
     </div>
+    
+    @endsection

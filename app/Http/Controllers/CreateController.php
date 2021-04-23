@@ -6,6 +6,7 @@ use App\Models\create;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+
 class CreateController extends Controller
 {
     /**
@@ -13,12 +14,19 @@ class CreateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+
+       
+        $texto = $request->input('texto');
+        $creates = create::query()
+        ->where('nombre', 'LIKE', "%{$texto}%")
+        ->paginate(5);
+        return view('productos.index', compact('creates'));
+   /*
         $datos['creates']=create::paginate(5);
         return view('productos.index',$datos);
-
+        */
 
     }
 
@@ -121,16 +129,13 @@ class CreateController extends Controller
     public function destroy($id)
     {
         //
-       $productos=create::findOrFail($id);
+        $productos=create::findOrFail($id);
 
-       if(Storage::delete('public/'.$productos->foto)){
-        create::destroy($id);
+        if(Storage::delete('public/'.$productos->foto)){
+         create::destroy($id);
+         
+        }
         
-       }
-       echo "<script>";
-       echo "alert('Se actualizo con exito')";
-       echo "</script>";
-
-        return redirect('productos');
+         return redirect('productos');
     }
 }

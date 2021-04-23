@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class create extends Model
 {
-    use HasFactory;
+    public function categoria(){
+        return $this->belongsTo('App\Models\categoria');
+    }
 }

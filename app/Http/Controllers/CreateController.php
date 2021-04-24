@@ -16,8 +16,6 @@ class CreateController extends Controller
      */
     public function index(Request $request)
     {
-
-       
         $texto = $request->input('texto');
         $creates = create::query()
         ->where('nombre', 'LIKE', "%{$texto}%")

@@ -18,7 +18,8 @@ class Productos extends Migration
             $table->string('nombre');
             $table->string('descripcion');
             $table->string('foto');
-            $table->foreign('id')->references('id')->on('categorias');
+            $table->bigInteger('id_categoria')->unsigned()->unique();
+            $table->foreign('id_categoria')->references('id')->on('categorias');
             $table->timestamps();
         });
     }

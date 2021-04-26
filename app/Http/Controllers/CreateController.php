@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\categoria;
 
 use App\Models\create;
 use Illuminate\Http\Request;
@@ -16,11 +17,12 @@ class CreateController extends Controller
      */
     public function index(Request $request)
     {
+        $categorias = categoria::all();
         $texto = $request->input('texto');
         $creates = create::query()
         ->where('nombre', 'LIKE', "%{$texto}%")
         ->paginate(5);
-        return view('productos.index', compact('creates'));
+        return view('productos.index', compact('creates','categorias'));
    /*
         $datos['creates']=create::paginate(5);
         return view('productos.index',$datos);
@@ -36,7 +38,8 @@ class CreateController extends Controller
     public function create()
     {
         //
-        return view('productos.create');
+        $categorias = categoria::all();
+        return view('productos.create',compact('categorias'));
     }
 
     /**

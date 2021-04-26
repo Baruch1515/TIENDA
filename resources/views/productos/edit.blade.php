@@ -46,14 +46,7 @@
     <input value="" class="form-control form-control-lg" accept="image/*" name="foto" id="formFileLg" type="file" />
 </div>
 <br>
- 
-<div class="form-group shadow-textarea">
-<h5><label for="">Categoria:</label></h5>
-<select name="" id="">
-    <option value=""></option>
-</select>
-</div>
-<br>
+
  
 <div class="form-group shadow-textarea">
 <h6><label for="">Tipo de producto:</label></h6>

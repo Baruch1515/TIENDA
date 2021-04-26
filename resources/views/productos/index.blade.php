@@ -6,8 +6,16 @@
       
  
       </head>       
+
+  
+
+
+
       <a href="{{url('productos/create')}}" style="margin:15px;">Nuevo Producto</a>
       <a href="{{url('productos/empresa')}}">Empresa</a>
+      <!-- Button trigger modal -->
+      <a href="{{url('categoria')}}" style="margin:15px;">Categorias</a>
+
       <form  action="{{route('productos.index')}}" method="get">   
 <div class="input-group mb-3" >
   <input type="text" class="form-control"placeholder="Busca aqui" name="texto" style="margin-top: 15px;">
@@ -52,6 +60,7 @@
 </table>
 
 {!! $creates->links() !!}
+
                 </div>
             </div>
         </div>

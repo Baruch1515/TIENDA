@@ -1,35 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
 use App\Models\categoria;
 
-use App\Models\create;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
-
-class InicioController extends Controller
+class CategoriaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         //
         $categorias = categoria::all();
-        $creates['creates']=create::paginate(11000);
-        $texto = $request->input('texto');
-        $creates = create::query()
-        ->where('nombre', 'LIKE', "%{$texto}%")
-        ->get();
-        return view('welcome', compact('creates','categorias'));
-       /*
-         $datos['creates']=create::paginate(1);
-        return view('welcome',$datos);
+        return view('productos.categoria',compact('categorias'));
         
-*/
     }
 
     /**
@@ -40,6 +28,9 @@ class InicioController extends Controller
     public function create()
     {
         //
+      
+       
+
     }
 
     /**
@@ -51,6 +42,10 @@ class InicioController extends Controller
     public function store(Request $request)
     {
         //
+        $datosproductos = request()->except('_token');
+        categoria::insert($datosproductos);
+        return back();
+
     }
 
     /**
@@ -85,6 +80,11 @@ class InicioController extends Controller
     public function update(Request $request, $id)
     {
         //
+            $categorias = categoria::find($id);
+            $categorias->nombre = $request->nombre;
+            $categorias->save();
+
+            return redirect()->back();
     }
 
     /**
@@ -96,5 +96,8 @@ class InicioController extends Controller
     public function destroy($id)
     {
         //
+
+
+
     }
 }

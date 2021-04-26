@@ -31,7 +31,7 @@
   <img class="card-img-top" src="{{asset('storage').'/'.$create->foto}}" alt="Card image cap" style="width:254px; height:224px; float:center;">
   <div class="card-body" style="float:left;">
     <h5 class="card-title">{{$create->nombre}}</h5>
-    <a href="#" class="btn btn-primary">Ver</a>
+    <a href="" class="btn btn-primary">Ver</a>
   </div>
 </div>
         @endforeach

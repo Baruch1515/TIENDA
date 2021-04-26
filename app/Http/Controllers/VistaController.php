@@ -1,35 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\categoria;
 
-use App\Models\create;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
-
-class InicioController extends Controller
+class VistaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         //
-        $categorias = categoria::all();
-        $creates['creates']=create::paginate(11000);
-        $texto = $request->input('texto');
-        $creates = create::query()
-        ->where('nombre', 'LIKE', "%{$texto}%")
-        ->get();
-        return view('welcome', compact('creates','categorias'));
-       /*
-         $datos['creates']=create::paginate(1);
-        return view('welcome',$datos);
-        
-*/
+        return view('productos.categoria');
     }
 
     /**

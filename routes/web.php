@@ -5,7 +5,6 @@ use App\Http\Controllers\CreateController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\CategoriaController;
-use App\Http\Controllers\VistaController;
 
 
 /*
@@ -23,36 +22,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/*
-Route::get('/productos', function () {
-    return view('productos.index');
-});
-
-Route::get('/productos/create',[CreateController::class,'create']);
-*/
-Route::resource('productos',CreateController::class)->middleware('auth');
-
-
-//panel de categorias
-//Route::get('/categoria','CategoriaController@categoria')->name('categoria');
-
-
-//Route::resource('/categoria', [CategoriaController::class, 'index'])->middleware('auth');
-Route::resource('/categoria',CategoriaController::class)->middleware('auth');
-Route::resource('/vista',VistaController::class);
-
-
-
-
+Route::resource('productos', CreateController::class)->middleware('auth');
+Route::resource('/categoria', CategoriaController::class)->middleware('auth');
+Route::resource('/empresa', EmpresaController::class)->middleware('auth');
 Auth::routes();
-
 Route::get('/', [InicioController::class, 'index'])->name('welcome');
+Route::get('/empresa-vista', [EmpresaController::class, 'empresa'])->name('welcome');
 
 
-
-
-Route::group(['middleware' => 'auth'], function(){
-Route::get('/home', [CreateController::class, 'index'])->name('home');
-
-
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', [CreateController::class, 'index'])->name('home');
 });

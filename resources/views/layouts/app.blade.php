@@ -26,13 +26,20 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+                <a  class="navbar-brand"  style="margin: 15px;" href="{{ url('empresa-vista') }}">{{ __('Quienes Somos') }}</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+                  
+                                    
+                                
                     <ul class="navbar-nav mr-auto">
+
+                <li></li>
+
                     <form  action="{{route('welcome')}}" method="get">   
 <div class="input-group mb-3" >
   <input type="text" class="form-control"placeholder="Busca aqui" name="texto" style="margin-top: 15px;">

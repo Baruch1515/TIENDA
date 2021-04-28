@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\empresa;
 
 use Illuminate\Http\Request;
 
@@ -15,6 +16,7 @@ class EmpresaController extends Controller
     {
         //
         return view('productos.empresa');
+
     }
 
     /**
@@ -22,9 +24,11 @@ class EmpresaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function empresa()
     {
         //
+        $empresas = empresa::all();
+        return view('empresa-vista',compact('empresas'));
     }
 
     /**
@@ -36,6 +40,15 @@ class EmpresaController extends Controller
     public function store(Request $request)
     {
         //
+        $datosproductos = request()->except('_token');
+        if($request->hasFile('foto-empresa')){
+            $datosproductos['foto-empresa']=$request->file('foto-empresa')->store('uploads','public');
+        }
+        empresa::insert($datosproductos);
+
+        return redirect('productos');
+
+
     }
 
     /**

@@ -12,7 +12,7 @@
 
 
       <a href="{{url('productos/create')}}" style="margin:15px;">Nuevo Producto</a>
-      <a href="{{url('productos/empresa')}}">Empresa</a>
+      <a href="{{url('empresa')}}">Empresa</a>
       <!-- Button trigger modal -->
       <a href="{{url('categoria')}}" style="margin:15px;">Categorias</a>
 

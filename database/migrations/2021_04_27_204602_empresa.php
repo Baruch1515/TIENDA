@@ -17,7 +17,7 @@ class Empresa extends Migration
             $table->bigIncrements('id');
             $table->string('nombre');
             $table->string('descripcion');
-            $table->string('foto-empresa');
+            $table->string('foto');
            
         });
     }

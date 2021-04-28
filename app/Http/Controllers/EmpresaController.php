@@ -41,8 +41,8 @@ class EmpresaController extends Controller
     {
         //
         $datosproductos = request()->except('_token');
-        if($request->hasFile('foto-empresa')){
-            $datosproductos['foto-empresa']=$request->file('foto-empresa')->store('uploads','public');
+        if($request->hasFile('foto')){
+            $datosproductos['foto']=$request->file('foto')->store('foto','public');
         }
         empresa::insert($datosproductos);
 

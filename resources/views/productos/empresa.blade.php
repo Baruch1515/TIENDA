@@ -23,7 +23,7 @@
 
         <div class="form-group shadow-textarea">
             <h4> <label for="">Foto</label></h4>
-            <input value="" class="form-control form-control-lg" accept="image/*" name="foto-empresa" id="formFileLg" type="file" / required>
+            <input value="" class="form-control form-control-lg" accept="image/*" name="foto" id="formFileLg" type="file" / required>
         </div>
         <br>
 

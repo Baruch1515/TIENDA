@@ -13,10 +13,10 @@ class Productos extends Migration
      */
     public function up()
     {
-        Schema::create('productos', function (Blueprint $table) {
+        Schema::create('creates', function (Blueprint $table) {
             $table->bigIncrements('id')->unique();
             $table->string('nombre');
-            $table->string('descripcion');
+            $table->string('descripcion',5000);
             $table->string('foto');
             $table->bigInteger('id_categoria')->unsigned()->unique();
             //$table->foreign('id_categoria')->references('id')->on('categorias')->onDelete('set null');

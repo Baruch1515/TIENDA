@@ -11,7 +11,7 @@
 <body>
     @foreach($empresas as $empresa)
     <h1>{{$empresa->nombre}}</h1>
-    <img src="{{asset('storage').'/'.$empresa->foto}}" class="img-fluid img-thumbnail" width="120px">
+    <img src="{{asset('storage').'/'.$empresa->foto}}" class="img-fluid img-thumbnail" width="500px">
     <p>{{$empresa->descripcion}}</p>
      @endforeach
 </body>

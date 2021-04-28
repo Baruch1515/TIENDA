@@ -16,7 +16,7 @@ class Empresa extends Migration
         Schema::create('empresa', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
-            $table->string('descripcion');
+            $table->string('descripcion', 5000);
             $table->string('foto');
            
         });

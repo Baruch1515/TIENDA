@@ -43,7 +43,7 @@
 
                     <div class="form-group shadow-textarea">
                         <h5><label for="">Categoria:</label></h5>
-                        <select name="id_categoria" id="">
+                        <select name="id_categoria" id="" required>
                             <option value="">---ESCOJA UNA CATEGORIA---</option>
                             @foreach($categorias as $categoria)
                             <option value="{{ $categoria['id'] }}">{{ $categoria['nombre'] }}</option>

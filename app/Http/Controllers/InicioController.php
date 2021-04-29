@@ -53,6 +53,9 @@ class InicioController extends Controller
         //
     }
 
+    
+
+
     /**
      * Display the specified resource.
      *
@@ -97,4 +100,13 @@ class InicioController extends Controller
     {
         //
     }
+
+    public function  categoria(categoria $categoria)
+    {
+        //
+       $productos = create::where('id_categoria',$categoria->id)
+                    ->paginate('16');
+                    return view('productos.category',compact('categoria','productos'));
+    }
+
 }

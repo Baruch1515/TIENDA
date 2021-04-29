@@ -23,7 +23,23 @@
         </style>
 
     </head>
-    
+    <div class="dropdown">
+
+  <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Categorias
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+  @foreach($categorias as $categoria)
+
+    <a class="dropdown-item" href="{{route('productos.category',$categoria)}}">{{ $categoria['nombre'] }}</a>
+   @endforeach
+  </div>
+</div>
+  
+
+  
+
     <body class="antialiased">
     @foreach($creates as $create)
     

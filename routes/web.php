@@ -28,7 +28,7 @@ Route::resource('/empresa', EmpresaController::class)->middleware('auth');
 Auth::routes();
 Route::get('/', [InicioController::class, 'index'])->name('welcome');
 Route::get('/empresa-vista', [EmpresaController::class, 'empresa'])->name('welcome');
-
+Route::get('category/{categoria}', [InicioController::class, 'categoria'])->name('productos.category');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [CreateController::class, 'index'])->name('home');

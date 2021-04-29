@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\categoria;
+use App\Models\create;
 
 
 class CategoriaController extends Controller
@@ -15,7 +16,7 @@ class CategoriaController extends Controller
     public function index()
     {
         //
-        $categorias = categoria::all();
+        $categorias = categoria::all();  
         return view('productos.categoria',compact('categorias'));
         
     }
@@ -94,10 +95,21 @@ class CategoriaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    {   
+
+        $categoria = categoria::find($id);
+        $producto = create::where('id_categoria',$id)->get();
         //
+       
+       if($categoria == null || $producto != null){
 
-
-
+        return back()->with('info','No puedes eliminar esta categoria ya que esta categoria tiene productos relacionados');
+       }
+        else{
+            categoria::destroy($id);
+         }
+       
     }
+    
+    
 }

@@ -98,7 +98,7 @@ class CategoriaController extends Controller
     {   
 
         $categoria = categoria::find($id);
-        $producto = create::where('id_categoria',$id)->get();
+        $producto = create::where('id_categoria',$id)->first();
         //
        
        if($categoria == null || $producto != null){
@@ -107,9 +107,13 @@ class CategoriaController extends Controller
        }
         else{
             categoria::destroy($id);
+            return back()->with('infogood','La categoria se elimino correctamente');
          }
        
     }
+        
     
+
     
 }
+    

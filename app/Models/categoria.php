@@ -12,4 +12,5 @@ class categoria extends Model
     public function creates(){
         return $this->belongsTo('App\Models\create');
     }
+  
 }

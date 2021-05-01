@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Models\empresa;
-
+use App\Models\categoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use App\Models\create;
 
 class EmpresaController extends Controller
 {
@@ -15,7 +17,9 @@ class EmpresaController extends Controller
     public function index()
     {
         //
-        return view('productos.empresa');
+        $categorias = categoria::all();
+        $empresas = empresa::all();
+        return view('productos.empresa',compact('categorias','empresas'));
 
     }
 
@@ -27,8 +31,12 @@ class EmpresaController extends Controller
     public function empresa()
     {
         //
+        $categorias = categoria::all();
+        $creates = create::all();
         $empresas = empresa::all();
-        return view('empresa-vista',compact('empresas'));
+
+        $empresas = empresa::all();
+        return view('empresa-vista',compact('empresas','categorias','creates'));
     }
 
     /**
@@ -82,7 +90,25 @@ class EmpresaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //EDITA EMPRESAAAAA
+
+        $datosempresas=request()->except(['_token','_method']);
+
+        if($request->hasFile('foto')){
+        $empresas=empresa::findOrFail($id);
+        Storage::delete('public/'.$empresas->foto);
+         $datosempresas['foto']=$request->file('foto')->store('foto','public');
+     }
+ 
+        empresa::where('id','=',$id)->update($datosempresas);
+        $empresas=empresa::findOrFail($id);
+         return view('productos.index', compact('empresas'));
+
+
+
+
+
+
     }
 
     /**

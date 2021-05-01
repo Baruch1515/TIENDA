@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\categoria;
+use App\Models\empresa;
 
 use App\Models\create;
 use Illuminate\Http\Request;
@@ -17,12 +18,13 @@ class CreateController extends Controller
      */
     public function index(Request $request)
     {
+        $empresas = empresa::all();
         $categorias = categoria::all();
         $texto = $request->input('texto');
         $creates = create::query()
-        ->where('nombre', 'LIKE', "%{$texto}%")
+        ->where('descripcion', 'LIKE', "%{$texto}%")
         ->paginate(5);
-        return view('productos.index', compact('creates','categorias'));
+        return view('productos.index', compact('creates','categorias','empresas'));
    /*
         $datos['creates']=create::paginate(5);
         return view('productos.index',$datos);
@@ -39,7 +41,9 @@ class CreateController extends Controller
     {
         //
         $categorias = categoria::all();
-        return view('productos.create',compact('categorias'));
+        $empresas = empresa::all();
+
+        return view('productos.create',compact('categorias','empresas'));
     }
 
     /**
@@ -95,7 +99,7 @@ class CreateController extends Controller
      */
     public function update(Request $request, $id)
     {
-       //
+       //EDITA PRODUCO
 
        $datosproductos =request()->except(['_token','_method']);
 

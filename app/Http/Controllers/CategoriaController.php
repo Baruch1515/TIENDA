@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\categoria;
 use App\Models\create;
+use App\Models\empresa;
 
 
 class CategoriaController extends Controller
@@ -16,8 +17,9 @@ class CategoriaController extends Controller
     public function index()
     {
         //
-        $categorias = categoria::all();  
-        return view('productos.categoria',compact('categorias'));
+        $categorias = categoria::all();
+        $empresas = empresa::all();
+        return view('productos.categoria',compact('categorias','empresas'));
         
     }
 

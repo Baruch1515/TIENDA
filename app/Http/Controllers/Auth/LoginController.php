@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use App\Models\empresa;
+use App\Models\categoria;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -37,4 +38,14 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function showLoginForm(){
+        $empresas = \App\Models\Empresa::all();
+        $categorias = \App\Models\categoria::all();
+        return view('auth.login',compact('empresas','categorias'));
+    }
+
+ 
+
+    
 }

@@ -12,7 +12,7 @@
 
 <body>
     <form  action="{{url('/empresa')}}" method="post" enctype="multipart/form-data">
-    @csrf
+   @csrf
         <h4><label for="nombre">Nombre de la empresa</label></h4>
         <input class="form-control" value="" type="text" placeholder="Nombre del producto" name="nombre" required>
         <br>
@@ -28,6 +28,7 @@
         <br>
 
         <input style="margin:15px;" type="submit" class="btn btn-success" value="Guardar">
+       
     </form>
 </body>
 

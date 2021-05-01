@@ -23,9 +23,13 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+            <a class="navbar-brand" href="{{ url('/') }}">
+                    @foreach($empresas as $empresa)
+                    <td><img src="{{asset('storage').'/'.$empresa->foto}}" class="" width="120px"></td>
+
+                    @endforeach
                 </a>
+
                 <a  class="navbar-brand"  style="margin: 15px;" href="{{ url('empresa-vista') }}">{{ __('Quienes Somos') }}</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -39,6 +43,17 @@
 
                 <li></li>
 
+                
+                <div class="dropdown">
+  <button  style="margin-top: 15px; margin:15px;" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Categorias
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+  @foreach($categorias as $categoria)
+    <a class="dropdown-item" href="{{route('productos.category',$categoria)}}">{{$categoria->nombre}}</a>
+    @endforeach
+  </div>
+</div>
                     <form  action="{{route('welcome')}}" method="get">   
 <div class="input-group mb-3" >
   <input type="text" class="form-control"placeholder="Busca aqui" name="texto" style="margin-top: 15px;">

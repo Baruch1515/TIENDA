@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\categoria;
-
+use App\Models\empresa;
 use App\Models\create;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -19,12 +19,13 @@ class InicioController extends Controller
     {
         //
         $categorias = categoria::all();
+        $empresas = empresa::all();
         $creates['creates']=create::paginate(11000);
         $texto = $request->input('texto');
         $creates = create::query()
         ->where('nombre', 'LIKE', "%{$texto}%")
         ->get();
-        return view('welcome', compact('creates','categorias'));
+        return view('welcome', compact('creates','categorias','empresas'));
        /*
          $datos['creates']=create::paginate(1);
         return view('welcome',$datos);
@@ -40,6 +41,8 @@ class InicioController extends Controller
     public function create()
     {
         //
+  
+
     }
 
     /**
@@ -104,9 +107,11 @@ class InicioController extends Controller
     public function  categoria(categoria $categoria)
     {
         //
+        $categorias = categoria::all();
+        $empresas = empresa::all();
        $productos = create::where('id_categoria',$categoria->id)
                     ->paginate('16');
-                    return view('productos.category',compact('categoria','productos'));
+                    return view('productos.category',compact('categoria','productos','categorias','empresas'));
     }
 
 }

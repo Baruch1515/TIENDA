@@ -12,7 +12,52 @@
 
 
       <a href="{{url('productos/create')}}" style="margin:15px;">Nuevo Producto</a>
-      <a href="{{url('empresa')}}">Empresa</a>
+
+      
+
+      <a href="{{url('empresa')}}" style="margin:15px;">Empresa</a>
+      
+
+      <!-- Button trigger modal -->
+<button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">
+ Editar Empresa
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Empresa</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+@foreach($empresas as $empresa)
+        <form action="{{url('empresa',$empresa->id)}}" method="post" enctype="multipart/form-data">
+        @csrf
+                    @method('PUT')
+        
+        <input type="text" placeholder="Nombre de la empresa..." value="{{$empresa->nombre}}" class="form-control" name="nombre" id="recipient-name"><br>
+        <textarea class="form-control"  value="" type="text" placeholder="Descripcion..." name="descripcion" required> {{$empresa->descripcion}}</textarea>
+        <br>
+        <img src="{{asset('storage').'/'.$empresa->foto}}" width="120px">
+        <input value="" class="form-control form-control-lg" accept="image/*" name="foto" id="formFileLg" type="file" / required>
+          <br>
+        @endforeach
+        <input type="submit" class="btn btn-success" value="Guardar">
+
+        </form>
+
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+
       <!-- Button trigger modal -->
       <a href="{{url('categoria')}}" style="margin:15px;">Categorias</a>
 

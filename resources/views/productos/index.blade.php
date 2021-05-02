@@ -15,15 +15,20 @@
 
       
 
-      <a href="{{url('empresa')}}" style="margin:15px;">Empresa</a>
       
-
-      <!-- Button trigger modal -->
-<button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">
+      @if ($empresas->count()>0)
+      <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">
  Editar Empresa
 </button>
+      @else
+     
+<a href="{{url('empresa')}}" style="margin:15px;">Empresa</a>
+      @endif
 
-<!-- Modal -->
+
+
+
+<!-- Modal edit -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -33,6 +38,9 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
+
+
       <div class="modal-body">
 @foreach($empresas as $empresa)
         <form action="{{url('empresa',$empresa->id)}}" method="post" enctype="multipart/form-data">

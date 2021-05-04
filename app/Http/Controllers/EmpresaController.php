@@ -102,8 +102,7 @@ class EmpresaController extends Controller
  
         empresa::where('id','=',$id)->update($datosempresas);
         $empresas=empresa::findOrFail($id);
-         return view('productos.index', compact('empresas'));
-
+            return back();
 
 
 

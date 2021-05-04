@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+
 use App\Models\empresa;
+use App\Models\categoria;
 
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -26,6 +28,7 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+    
     /**
      * Where to redirect users after registration.
      *
@@ -41,6 +44,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        
     }
 
     /**
@@ -56,8 +60,10 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+        
     }
 
+ 
     /**
      * Create a new user instance after a valid registration.
      *
@@ -72,8 +78,5 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
-    public function showRegisterForm(){
-        $empresas = \App\Models\Empresa::all();
-        return view('auth.register',compact('empresas'));
-    }
+   
 }

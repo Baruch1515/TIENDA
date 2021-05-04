@@ -23,11 +23,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                    @foreach($empresas as $empresa)
-                    <td><img src="{{asset('storage').'/'.$empresa->foto}}" class="" width="120px"></td>
-
-                    @endforeach
+       endforeach
                 </a>
 
                 <a  class="navbar-brand"  style="margin: 15px;" href="{{ url('empresa-vista') }}">{{ __('Quienes Somos') }}</a>
@@ -49,11 +45,7 @@
     Categorias
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-  @foreach($categorias as $categoria)
-    <a class="dropdown-item" href="{{route('productos.category',$categoria)}}">{{$categoria->nombre}}</a>
-    @endforeach
-  </div>
-</div>
+
                     <form  action="{{route('welcome')}}" method="get">   
 <div class="input-group mb-3" >
   <input type="text" class="form-control"placeholder="Busca aqui" name="texto" style="margin-top: 15px;">

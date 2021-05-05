@@ -40,7 +40,7 @@ class LoginController extends Controller
     }
 
     public function showLoginForm(){
-        $empresas = \App\Models\Empresa::all();
+        $empresas = \App\Models\empresa::all();
         $categorias = \App\Models\categoria::all();
         return view('auth.login',compact('empresas','categorias'));
     }

@@ -53,11 +53,13 @@
                         </select>
                     </div>
                     <br>
-
                     <div class="form-group shadow-textarea">
-                        <h6><label for="">Tipo de producto:</label></h6>
-                        <select name="" id="">
-                            <option value=""></option>
+                        <h5><label for="">Tipo de producto:</label></h5>
+                        <select name="id_tipo" id="" required>
+                            <option value="">---ESCOJA UN TIPO DE PRODUCTO---</option>
+                            @foreach($tipos as $tipo)
+                            <option value="{{ $tipo['id'] }}">{{ $tipo['nombre'] }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <br>

@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class tipo extends Model
+class Tipo extends Model
 {
     use HasFactory;
-    public function categoria(){
-        return $this->belongsTo('App\Models\categoria');
+    public function create(){
+        return $this->belongsTo('App\Models\create');
     }
+    protected $table = 'tipo';
+
 }

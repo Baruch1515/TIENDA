@@ -10,4 +10,7 @@ class create extends Model
     public function categoria(){
         return $this->belongsTo('App\Models\categoria');
     }
+    public function tipo(){
+        return $this->belongsTo('App\Models\tipo');
+    }
 }

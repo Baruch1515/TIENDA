@@ -11,8 +11,6 @@ class categoria extends Model
 {
     public function creates(){
         return $this->belongsTo('App\Models\create');
-    } public function tipo(){
-        return $this->belongsTo('App\Models\tipo');
     }
   
 }

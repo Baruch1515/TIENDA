@@ -10,7 +10,7 @@
 </head>
 <body>
 
-
+  <p style="font-size:25px;text-align: center;"> Categoria {{$categoria->nombre}}</p>
     @foreach($productos as $create)
     <div class="card" style="width: 18rem; margin:25px; float:left; width: 280px; height:350px;">
   <img class="card-img-top" src="{{asset('storage').'/'.$create->foto}}" alt="Card image cap" style="width:254px; height:224px; float:center;">

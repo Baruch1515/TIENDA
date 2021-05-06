@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\categoria;
 use App\Models\empresa;
+use App\Models\tipo;
 
 use App\Models\create;
 use Illuminate\Http\Request;
@@ -42,8 +43,8 @@ class CreateController extends Controller
         //
         $categorias = categoria::all();
         $empresas = empresa::all();
-
-        return view('productos.create',compact('categorias','empresas'));
+        $tipos = tipo::all();
+        return view('productos.create',compact('categorias','empresas','tipos'));
     }
 
     /**

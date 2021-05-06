@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\tipo;
+use App\Models\categoria;
+use App\Models\create;
+use App\Models\empresa;
 use Illuminate\Http\Request;
 
 class TipoController extends Controller
@@ -15,6 +17,11 @@ class TipoController extends Controller
     public function index()
     {
         //
+        $empresas = empresa::all();
+        $categorias = categoria::all();
+        $tipos = tipo::all();
+
+        return view('productos.tipo',compact('empresas','categorias','tipos'));
     }
 
     /**
@@ -36,15 +43,18 @@ class TipoController extends Controller
     public function store(Request $request)
     {
         //
+        $datosproductos = request()->except('_token');
+        tipo::insert($datosproductos);
+        return back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\tipo  $tipo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(tipo $tipo)
+    public function show($id)
     {
         //
     }
@@ -52,10 +62,10 @@ class TipoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\tipo  $tipo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(tipo $tipo)
+    public function edit($id)
     {
         //
     }
@@ -64,22 +74,29 @@ class TipoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\tipo  $tipo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, tipo $tipo)
+    public function update(Request $request, $id)
     {
         //
+        $tipos = tipo::find($id);
+            $tipos->nombre = $request->nombre;
+            $tipos->save();
+
+            return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\tipo  $tipo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(tipo $tipo)
+    public function destroy($id)
     {
         //
+        tipo::destroy($id);
+            return back();
     }
 }

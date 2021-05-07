@@ -17,10 +17,10 @@ class EmpresaController extends Controller
     public function index()
     {
         //
-        $tipos = tipo::all();
+       
         $categorias = categoria::all();
         $empresas = empresa::all();
-        return view('productos.empresa',compact('tipos','categorias','empresas'));
+        return view('productos.empresa',compact('categorias','empresas'));
 
     }
 

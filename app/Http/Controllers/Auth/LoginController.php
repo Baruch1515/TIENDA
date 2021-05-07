@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 use App\Models\empresa;
 use App\Models\categoria;
+use App\Models\tipo;
+
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -42,7 +44,8 @@ class LoginController extends Controller
     public function showLoginForm(){
         $empresas = \App\Models\empresa::all();
         $categorias = \App\Models\categoria::all();
-        return view('auth.login',compact('empresas','categorias'));
+        $tipos = \App\Models\tipo::all();
+        return view('auth.login',compact('empresas','categorias','tipos'));
     }
 
  

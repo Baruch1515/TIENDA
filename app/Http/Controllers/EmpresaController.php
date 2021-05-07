@@ -6,7 +6,7 @@ use App\Models\categoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\create;
-
+use App\Models\tipo;
 class EmpresaController extends Controller
 {
     /**
@@ -35,9 +35,9 @@ class EmpresaController extends Controller
         $categorias = categoria::all();
         $creates = create::all();
         $empresas = empresa::all();
-
+$tipos = tipo::all();
         $empresas = empresa::all();
-        return view('empresa-vista',compact('empresas','categorias','creates'));
+        return view('empresa-vista',compact('empresas','categorias','creates','tipos'));
     }
 
     /**

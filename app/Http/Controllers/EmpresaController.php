@@ -17,10 +17,14 @@ class EmpresaController extends Controller
     public function index()
     {
         //
+<<<<<<< HEAD
        
+=======
+        $tipos = tipo::all();
+>>>>>>> 1b059f2 (bugs)
         $categorias = categoria::all();
         $empresas = empresa::all();
-        return view('productos.empresa',compact('categorias','empresas'));
+        return view('productos.empresa',compact('categorias','empresas','tipos'));
 
     }
 
@@ -35,7 +39,7 @@ class EmpresaController extends Controller
         $categorias = categoria::all();
         $creates = create::all();
         $empresas = empresa::all();
-$tipos = tipo::all();
+        $tipos = tipo::all();
         $empresas = empresa::all();
         return view('empresa-vista',compact('empresas','categorias','creates','tipos'));
     }

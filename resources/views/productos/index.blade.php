@@ -89,18 +89,18 @@
     </tr>
   </thead>
   <tbody>
-    @foreach($creates as $create)
+    @foreach($productos as $Producto)
     <tr>
 
-      <td>{{$create->id}}</td>
-      <th>{{$create->nombre}}</th>
-      <td>{{$create->descripcion}}</td>
-      <td><img src="{{asset('storage').'/'.$create->foto}}" class="img-fluid img-thumbnail" width="120px"></td>
-      <td><a href="{{route('productos.edit',$create->id)}}" class="btn btn-light" style="color:blue;">Editar</a></td>
+      <td>{{$Producto->id}}</td>
+      <th>{{$Producto->nombre}}</th>
+      <td>{{$Producto->descripcion}}</td>
+      <td><img src="{{asset('storage').'/'.$Producto->foto}}" class="img-fluid img-thumbnail" width="120px"></td>
+      <td><a href="{{route('productos.edit',$Producto->id)}}" class="btn btn-light" style="color:blue;">Editar</a></td>
 
 
       <td>
-        <form action="{{ url('productos/'.$create->id ) }}" method="post">
+        <form action="{{ url('productos/'.$Producto->id ) }}" method="post">
           @csrf
           {{ method_field('DELETE') }}
           <button onclick="return confirm('¿Seguro Que quieres borrar este registro?')" class="btn btn-light" style="color:red;">Borrar</button>
@@ -112,7 +112,7 @@
   </tbody>
 </table>
 
-{!! $creates->links() !!}
+{!! $productos->links() !!}
 
 </div>
 </div>

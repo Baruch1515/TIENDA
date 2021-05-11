@@ -9,7 +9,7 @@ class Tipo extends Model
 {
     use HasFactory;
     public function create(){
-        return $this->belongsTo('App\Models\create');
+        return $this->belongsTo('App\Models\Producto');
     }
     protected $table = 'tipo';
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\tipo;
 use App\Models\categoria;
-use App\Models\create;
+use App\Models\Producto;
 use App\Models\empresa;
 use Illuminate\Http\Request;
 
@@ -95,8 +95,20 @@ class TipoController extends Controller
      */
     public function destroy($id)
     {
+        $tipo = tipo::find($id);
+        $producto = Producto::where('id_tipo',$id)->first();
         //
-        tipo::destroy($id);
-            return back();
+       
+       if($tipo == null || $producto != null){
+
+        return back()->with('info','Para eliminar este tipo borra los productos que lo contienen');
+      
+       }
+        else{
+            tipo::destroy($id);
+            return back()->with('infogood','El tipo se elimino correctamente');
+         }
+       
+
     }
 }

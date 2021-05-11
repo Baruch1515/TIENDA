@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\categoria;
-use App\Models\create;
+use App\Models\Producto;
 use App\Models\empresa;
 
 
@@ -100,7 +100,7 @@ class CategoriaController extends Controller
     {   
 
         $categoria = categoria::find($id);
-        $producto = create::where('id_categoria',$id)->first();
+        $producto = Producto::where('id_categoria',$id)->first();
         //
        
        if($categoria == null || $producto != null){

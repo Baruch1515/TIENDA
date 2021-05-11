@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\categoria;
 use App\Models\empresa;
-use App\Models\create;
+use App\Models\Producto;
 use App\Models\tipo;
 
 use Illuminate\Http\Request;
@@ -24,9 +24,9 @@ class InicioController extends Controller
         $empresas = empresa::all();
         $tipos = tipo::all();
 
-        $creates['creates']=create::paginate(11000);
+        $creates['creates']=Producto::paginate(2);
         $texto = $request->input('texto');
-        $creates = create::query()
+        $creates = Producto::query()
         ->where('nombre', 'LIKE', "%{$texto}%")
         ->get();
         return view('welcome', compact('creates','categorias','empresas','tipos'));
@@ -114,7 +114,7 @@ class InicioController extends Controller
         $tipos = tipo::all();
         $categorias = categoria::all();
         $empresas = empresa::all();
-       $productos = create::where('id_categoria',$categoria->id)
+       $productos = Producto::where('id_categoria',$categoria->id)
                     ->paginate('16');
                     return view('productos.category',compact('categoria','productos','categorias','empresas','tipos'));
     }
@@ -125,7 +125,7 @@ class InicioController extends Controller
         $tipos = tipo::all();
         $categorias = categoria::all();
         $empresas = empresa::all();
-       $productos = create::where('id_tipo',$tipo->id)
+       $productos = Producto::where('id_tipo',$tipo->id)
                     ->paginate('16');
                     return view('productos.category',compact('productos','categorias','empresas','tipos'));
         

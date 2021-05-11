@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CreateController;
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\CategoriaController;
@@ -24,7 +24,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('productos', CreateController::class)->middleware('auth');
+Route::resource('productos', ProductoController::class)->middleware('auth');
 Route::resource('/categoria', CategoriaController::class)->middleware('auth');
 Route::resource('/tipo', TipoController::class)->middleware('auth');
 
@@ -37,5 +37,5 @@ Route::get('tipo-vista/{tipo}', [InicioController::class, 'tipo'])->name('produc
 
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/home', [CreateController::class, 'index'])->name('home');
+    Route::get('/home', [ProductoController::class, 'index'])->name('home');
 });

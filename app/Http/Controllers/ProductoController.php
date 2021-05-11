@@ -5,12 +5,12 @@ use App\Models\categoria;
 use App\Models\empresa;
 use App\Models\tipo;
 
-use App\Models\create;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 
-class CreateController extends Controller
+class ProductoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,10 +22,10 @@ class CreateController extends Controller
         $empresas = empresa::all();
         $categorias = categoria::all();
         $texto = $request->input('texto');
-        $creates = create::query()
+        $productos = Producto::query()
         ->where('descripcion', 'LIKE', "%{$texto}%")
         ->paginate(5);
-        return view('productos.index', compact('creates','categorias','empresas'));
+        return view('productos.index', compact('productos','categorias','empresas'));
    /*
         $datos['creates']=create::paginate(5);
         return view('productos.index',$datos);
@@ -60,7 +60,7 @@ class CreateController extends Controller
         if($request->hasFile('foto')){
             $datosproductos['foto']=$request->file('foto')->store('foto','public');
         }
-        Create::insert($datosproductos);
+        Producto::insert($datosproductos);
 
         return redirect('productos');
 
@@ -72,7 +72,7 @@ class CreateController extends Controller
      * @param  \App\Models\create  $create
      * @return \Illuminate\Http\Response
      */
-    public function show(create $create)
+    public function show(Producto $producto)
     {
         //
     }
@@ -87,7 +87,7 @@ class CreateController extends Controller
     {
         //
         
-        $productos=create::findOrFail($id);
+        $productos=Producto::findOrFail($id);
         return view('productos.edit', compact('productos'));
     }
 
@@ -105,13 +105,13 @@ class CreateController extends Controller
        $datosproductos =request()->except(['_token','_method']);
 
        if($request->hasFile('foto')){
-       $productos=create::findOrFail($id);
+       $productos=Producto::findOrFail($id);
        Storage::delete('public/'.$productos->foto);
         $datosproductos['foto']=$request->file('foto')->store('foto','public');
     }
 
-       create::where('id','=',$id)->update($datosproductos);
-       $productos=create::findOrFail($id);
+       Producto::where('id','=',$id)->update($datosproductos);
+       $productos=Producto::findOrFail($id);
         return view('productos.edit', compact('productos'));
 
       /*
@@ -135,10 +135,10 @@ class CreateController extends Controller
     public function destroy($id)
     {
         //
-        $productos=create::findOrFail($id);
+        $productos=Producto::findOrFail($id);
 
         if(Storage::delete('public/'.$productos->foto)){
-         create::destroy($id);
+            Producto::destroy($id);
          
         }
         

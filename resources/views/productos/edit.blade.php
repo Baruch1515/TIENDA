@@ -44,13 +44,7 @@
                     <br>
 
 
-                    <div class="form-group shadow-textarea">
-                        <h6><label for="">Tipo de producto:</label></h6>
-                        <select name="" id="">
-                            <option value=""></option>
-                        </select>
-                    </div>
-                    <br>
+                
 
                     <input type="submit" class="btn btn-success" value="Guardar">
                 </form>

@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\empresa;
-use App\Models\categoria;
+use App\Models\Empresa;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Producto;
-use App\Models\tipo;
+use App\Models\Tipo;
 class EmpresaController extends Controller
 {
     /**
@@ -17,9 +17,9 @@ class EmpresaController extends Controller
     public function index()
     {
         //
-        $tipos = tipo::all();
-        $categorias = categoria::all();
-        $empresas = empresa::all();
+        $tipos = Tipo::all();
+        $categorias = Categoria::all();
+        $empresas = Empresa::all();
         return view('productos.empresa',compact('categorias','empresas','tipos'));
 
     }
@@ -32,11 +32,10 @@ class EmpresaController extends Controller
     public function empresa()
     {
         //
-        $categorias = categoria::all();
+        $categorias = Categoria::all();
         $creates = Producto::all();
-        $empresas = empresa::all();
-        $tipos = tipo::all();
-        $empresas = empresa::all();
+        $empresas = Empresa::all();
+        $tipos = Tipo::all();
         return view('empresa-vista',compact('empresas','categorias','creates','tipos'));
     }
 
@@ -53,7 +52,7 @@ class EmpresaController extends Controller
         if($request->hasFile('foto')){
             $datosproductos['foto']=$request->file('foto')->store('foto','public');
         }
-        empresa::insert($datosproductos);
+        Empresa::insert($datosproductos);
 
         return redirect('productos');
 
@@ -96,13 +95,13 @@ class EmpresaController extends Controller
         $datosempresas=request()->except(['_token','_method']);
 
         if($request->hasFile('foto')){
-        $empresas=empresa::findOrFail($id);
+        $empresas=Empresa::findOrFail($id);
         Storage::delete('public/'.$empresas->foto);
          $datosempresas['foto']=$request->file('foto')->store('foto','public');
      }
  
-        empresa::where('id','=',$id)->update($datosempresas);
-        $empresas=empresa::findOrFail($id);
+        Empresa::where('id','=',$id)->update($datosempresas);
+        $empresas=Empresa::findOrFail($id);
             return back();
 
 

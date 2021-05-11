@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\tipo;
-use App\Models\categoria;
+use App\Models\Tipo;
+use App\Models\Categoria;
 use App\Models\Producto;
-use App\Models\empresa;
+use App\Models\Empresa;
 use Illuminate\Http\Request;
 
 class TipoController extends Controller
@@ -17,9 +17,9 @@ class TipoController extends Controller
     public function index()
     {
         //
-        $empresas = empresa::all();
-        $categorias = categoria::all();
-        $tipos = tipo::all();
+        $empresas = Empresa::all();
+        $categorias = Categoria::all();
+        $tipos = Tipo::all();
 
         return view('productos.tipo',compact('empresas','categorias','tipos'));
     }
@@ -44,7 +44,7 @@ class TipoController extends Controller
     {
         //
         $datosproductos = request()->except('_token');
-        tipo::insert($datosproductos);
+        Tipo::insert($datosproductos);
         return back();
     }
 
@@ -80,7 +80,7 @@ class TipoController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $tipos = tipo::find($id);
+        $tipos = Tipo::find($id);
             $tipos->nombre = $request->nombre;
             $tipos->save();
 
@@ -95,7 +95,7 @@ class TipoController extends Controller
      */
     public function destroy($id)
     {
-        $tipo = tipo::find($id);
+        $tipo = Tipo::find($id);
         $producto = Producto::where('id_tipo',$id)->first();
         //
        
@@ -105,7 +105,7 @@ class TipoController extends Controller
       
        }
         else{
-            tipo::destroy($id);
+            Tipo::destroy($id);
             return back()->with('infogood','El tipo se elimino correctamente');
          }
        

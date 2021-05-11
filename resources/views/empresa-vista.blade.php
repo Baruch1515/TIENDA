@@ -9,10 +9,10 @@
     <title>Document</title>
 </head>
 <body>
-    @foreach($empresas as $empresa)
-    <h1>{{$empresa->nombre}}</h1>
-    <img src="{{asset('storage').'/'.$empresa->foto}}" class="img-fluid img-thumbnail" width="500px">
-    <p>{{$empresa->descripcion}}</p>
+    @foreach($empresas as $Empresa)
+    <h1>{{$Empresa->nombre}}</h1>
+    <img src="{{asset('storage').'/'.$Empresa->foto}}" class="img-fluid img-thumbnail" width="500px">
+    <p>{{$Empresa->descripcion}}</p>
      @endforeach
 </body>
 </html>

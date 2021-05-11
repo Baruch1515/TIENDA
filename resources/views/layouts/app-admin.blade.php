@@ -28,8 +28,8 @@
             <div class="container">
                
             <a class="navbar-brand" href="{{ url('/') }}">
-                    @foreach($empresas as $empresa)
-                    <td><img src="{{asset('storage').'/'.$empresa->foto}}" class="" width="120px"></td>
+                    @foreach($empresas as $Empresa)
+                    <td><img src="{{asset('storage').'/'.$Empresa->foto}}" class="" width="120px"></td>
 
                     @endforeach
                 </a>

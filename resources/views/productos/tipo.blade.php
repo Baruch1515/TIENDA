@@ -79,20 +79,20 @@
 
 
     <tbody>
-      @foreach($tipos as $tipo)
+      @foreach($tipos as $Tipo)
       <tr>
-        <td>{{$tipo->id}}</td>
-        <td>{{$tipo->nombre}}</td>
+        <td>{{$Tipo->id}}</td>
+        <td>{{$Tipo->nombre}}</td>
 
 
         <td>
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edittipo{{$tipo->id}}">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edittipo{{$Tipo->id}}">
             Editar
           </button>
 
           <!-- Modal -->
-          <div class="modal fade" id="edittipo{{$tipo->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="edittipo{{$Tipo->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -102,10 +102,10 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form action="{{url('tipo',$tipo->id)}}" method="post">
+                  <form action="{{url('tipo',$Tipo->id)}}" method="post">
                     @csrf
                     @method('PUT')
-                    <input type="text" value="{{$tipo->nombre}}" class="form-control" name="nombre" id="recipient-name">
+                    <input type="text" value="{{$Tipo->nombre}}" class="form-control" name="nombre" id="recipient-name">
                     <br>
                     <input type="submit" class="btn btn-success" value="Guardar">
                   </form>
@@ -118,7 +118,7 @@
           </div>
         </td>
       <td>
-      <form action="{{url('tipo',$tipo->id)}}"  method="post">
+      <form action="{{url('tipo',$Tipo->id)}}"  method="post">
       @csrf
       {{ method_field('DELETE') }}
       <button onclick="return confirm('¿Seguro Que quieres borrar este registro?')" class="btn btn-danger" >Borrar</button>

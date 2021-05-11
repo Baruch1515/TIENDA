@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Models\categoria;
+use App\Models\Categoria;
 use App\Models\Producto;
-use App\Models\empresa;
+use App\Models\Empresa;
 
 
 class CategoriaController extends Controller
@@ -17,8 +17,8 @@ class CategoriaController extends Controller
     public function index()
     {
         //
-        $categorias = categoria::all();
-        $empresas = empresa::all();
+        $categorias = Categoria::all();
+        $empresas = Empresa::all();
         return view('productos.categoria',compact('categorias','empresas'));
         
     }
@@ -46,7 +46,7 @@ class CategoriaController extends Controller
     {
         //
         $datosproductos = request()->except('_token');
-        categoria::insert($datosproductos);
+        Categoria::insert($datosproductos);
         return back();
 
     }
@@ -83,7 +83,7 @@ class CategoriaController extends Controller
     public function update(Request $request, $id)
     {
         //
-            $categorias = categoria::find($id);
+            $categorias = Categoria::find($id);
             $categorias->nombre = $request->nombre;
             $categorias->save();
 
@@ -99,7 +99,7 @@ class CategoriaController extends Controller
     public function destroy($id)
     {   
 
-        $categoria = categoria::find($id);
+        $categoria = Categoria::find($id);
         $producto = Producto::where('id_categoria',$id)->first();
         //
        
@@ -108,7 +108,7 @@ class CategoriaController extends Controller
         return back()->with('info','No puedes eliminar esta categoria ya que esta categoria tiene productos relacionados');
        }
         else{
-            categoria::destroy($id);
+            Categoria::destroy($id);
             return back()->with('infogood','La categoria se elimino correctamente');
          }
        

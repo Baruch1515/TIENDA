@@ -47,8 +47,8 @@
                         <h5><label for="">Categoria:</label></h5>
                         <select name="id_categoria" id="" required>
                             <option value="">---ESCOJA UNA CATEGORIA---</option>
-                            @foreach($categorias as $categoria)
-                            <option value="{{ $categoria['id'] }}">{{ $categoria['nombre'] }}</option>
+                            @foreach($categorias as $Categoria)
+                            <option value="{{ $Categoria['id'] }}">{{ $Categoria['nombre'] }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -57,8 +57,8 @@
                         <h5><label for="">Tipo de producto:</label></h5>
                         <select name="id_tipo" id="" required>
                             <option value="">---ESCOJA UN TIPO DE PRODUCTO---</option>
-                            @foreach($tipos as $tipo)
-                            <option value="{{ $tipo['id'] }}">{{ $tipo['nombre'] }}</option>
+                            @foreach($tipos as $Tipo)
+                            <option value="{{ $Tipo['id'] }}">{{ $Tipo['nombre'] }}</option>
                             @endforeach
                         </select>
                     </div>

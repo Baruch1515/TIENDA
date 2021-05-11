@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\categoria;
-use App\Models\empresa;
+use App\Models\Categoria;
+use App\Models\Empresa;
 use App\Models\Producto;
-use App\Models\tipo;
+use App\Models\Tipo;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -20,9 +20,9 @@ class InicioController extends Controller
     public function index(Request $request)
     {
         //
-        $categorias = categoria::all();
-        $empresas = empresa::all();
-        $tipos = tipo::all();
+        $categorias = Categoria::all();
+        $empresas = Empresa::all();
+        $tipos = Tipo::all();
 
         $creates['creates']=Producto::paginate(2);
         $texto = $request->input('texto');
@@ -111,9 +111,9 @@ class InicioController extends Controller
     public function  categoria(categoria $categoria)
     {
         //
-        $tipos = tipo::all();
-        $categorias = categoria::all();
-        $empresas = empresa::all();
+        $tipos = Tipo::all();
+        $categorias = Categoria::all();
+        $empresas = Empresa::all();
        $productos = Producto::where('id_categoria',$categoria->id)
                     ->paginate('16');
                     return view('productos.category',compact('categoria','productos','categorias','empresas','tipos'));
@@ -122,12 +122,12 @@ class InicioController extends Controller
     public function  tipo(tipo $tipo)
     {
 
-        $tipos = tipo::all();
-        $categorias = categoria::all();
-        $empresas = empresa::all();
+        $tipos = Tipo::all();
+        $categorias = Categoria::all();
+        $empresas = Empresa::all();
        $productos = Producto::where('id_tipo',$tipo->id)
                     ->paginate('16');
-                    return view('productos.category',compact('productos','categorias','empresas','tipos'));
+                    return view('productos.tipo-vista',compact('productos','categorias','empresas','tipos'));
         
        
                       

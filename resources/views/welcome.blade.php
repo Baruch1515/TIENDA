@@ -30,49 +30,51 @@
   
 
     <body class="antialiased">
-    @foreach($creates as $create)
+    @foreach($creates as $Producto)
     
     <div class="card" style="width: 18rem; margin:25px; float:left; width: 280px; height:350px;">
-  <img class="card-img-top" src="{{asset('storage').'/'.$create->foto}}" alt="Card image cap" style="width:254px; height:224px; float:center;">
+  <img class="card-img-top" src="{{asset('storage').'/'.$Producto->foto}}" alt="Card image cap" style="width:254px; height:224px; float:center;">
   <div class="card-body" style="float:left;">
-    <h5 class="card-title">{{$create->nombre}}</h5>
+    <h5 class="card-title">{{$Producto->nombre}}</h5>
     <!-- Button trigger modal -->
-    <a href="{{url('productos',$create->id)}}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editCategoria{{$create->id}}">
+    <a href="{{url('productos',$Producto->id)}}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editCategoria{{$Producto->id}}">
     Vista Previa
     </a>
 
 <!-- Modal -->
-<div class="modal fade" id="editCategoria{{$create->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editCategoria{{$Producto->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">{{$create->nombre}}</h5>
+        <h5 class="modal-title" id="exampleModalLabel">{{$Producto->nombre}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-  <img class="card-img-top" src="{{asset('storage').'/'.$create->foto}}" alt="Card image cap" style="width:254px; height:224px; float:center;">
-     <p>{{$create->descripcion}}</p>
+  <img class="card-img-top" src="{{asset('storage').'/'.$Producto->foto}}" alt="Card image cap" style="width:254px; height:224px; float:center;">
+     <p>{{$Producto->descripcion}}</p>
       </div>
       <div class="modal-footer">
+      
       </div>
     </div>
   </div>
 </div>
   </div>
 </div>
+
         @endforeach
         
                 </div>
     
-                
+                       
 
         </div>
 
         </div>
     </body>
-  
+         
     
 </html>
 

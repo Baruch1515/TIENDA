@@ -51,8 +51,8 @@
                             Categorias
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            @foreach($categorias as $categoria)
-                            <a class="dropdown-item" href="{{route('productos.category',$categoria)}}">{{$categoria->nombre}}</a>
+                            @foreach($categorias as $Categoria)
+                            <a class="dropdown-item" href="{{route('productos.category',$Categoria)}}">{{$Categoria->nombre}}</a>
                             @endforeach
                         </div>
                     </div>
@@ -61,8 +61,8 @@
                             Tipos
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            @foreach($tipos as $tipo)
-                            <a class="dropdown-item" href="{{route('productos.tipo-vista',$tipo)}}">{{$tipo->nombre}}</a>
+                            @foreach($tipos as $Tipo)
+                            <a class="dropdown-item" href="{{route('productos.tipo-vista',$Tipo)}}">{{$Tipo->nombre}}</a>
                             @endforeach
                         </div>
                     </div>

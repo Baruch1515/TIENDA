@@ -75,20 +75,20 @@
 
 
     <tbody>
-      @foreach($categorias as $categoria)
+      @foreach($categorias as $Categoria)
       <tr>
-        <td>{{$categoria->id}}</td>
-        <td>{{$categoria->nombre}}</td>
+        <td>{{$Categoria->id}}</td>
+        <td>{{$Categoria->nombre}}</td>
 
 
         <td>
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editCategoria{{$categoria->id}}">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editCategoria{{$Categoria->id}}">
             Editar
           </button>
 
           <!-- Modal -->
-          <div class="modal fade" id="editCategoria{{$categoria->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="editCategoria{{$Categoria->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -98,10 +98,10 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form action="{{url('categoria',$categoria->id)}}" method="post">
+                  <form action="{{url('categoria',$Categoria->id)}}" method="post">
                     @csrf
                     @method('PUT')
-                    <input type="text" value="{{$categoria->nombre}}" class="form-control" name="nombre" id="recipient-name">
+                    <input type="text" value="{{$Categoria->nombre}}" class="form-control" name="nombre" id="recipient-name">
                     <br>
                     <input type="submit" class="btn btn-success" value="Guardar">
                   </form>
@@ -114,7 +114,7 @@
           </div>
         </td>
       <td>
-      <form action="{{url('categoria',$categoria->id)}}"  method="post">
+      <form action="{{url('categoria',$Categoria->id)}}"  method="post">
       @csrf
       {{ method_field('DELETE') }}
       <button onclick="return confirm('¿Seguro Que quieres borrar este registro?')" class="btn btn-danger" >Borrar</button>

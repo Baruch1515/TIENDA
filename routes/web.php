@@ -23,7 +23,7 @@ use App\Http\Controllers\TipoController;
 Route::get('/', function () {
     return view('welcome');
 });
-
+//sdmsndk
 Route::resource('productos', ProductoController::class)->middleware('auth');
 Route::resource('/categoria', CategoriaController::class)->middleware('auth');
 Route::resource('/tipo', TipoController::class)->middleware('auth');

@@ -10,7 +10,7 @@ class Producto extends Model
     public function categoria(){
         return $this->belongsTo('App\Models\categoria');
     }
-    public function tipo(){
+    public function Tipo(){
         return $this->belongsTo('App\Models\tipo');
     }
     //completa las conversaciones WHould o Whouldn´t

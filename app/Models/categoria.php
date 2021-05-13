@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Producto;
 
 
-class categoria extends Model
+class Categoria extends Model
 
 
 {

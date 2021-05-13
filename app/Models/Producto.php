@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Producto extends Model
 {
-    public function categoria(){
+    public function Categoria(){
         return $this->belongsTo('App\Models\categoria');
     }
     public function Tipo(){

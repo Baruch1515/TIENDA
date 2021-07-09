@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Models\Empresa;
 use App\Models\Tipo;
+use App\Models\footer;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
@@ -32,13 +33,15 @@ class ProductoController extends Controller
         $categorias = Categoria::all();
         $empresas = Empresa::all();
         $tipos = Tipo::all();
+        $footers = footer::all();
 
    
         $texto = $request->input('texto');
         $productos = Producto::query()
         ->where('nombre', 'LIKE', "%{$texto}%")
+        ->orderBy('id','desc')
         ->paginate(1);
-        return view('productos.index', compact('productos','categorias','empresas','tipos'));
+        return view('productos.index', compact('productos','categorias','empresas','tipos','footers'));
    /*
         $datos['creates']=create::paginate(5);
         return view('productos.index',$datos);

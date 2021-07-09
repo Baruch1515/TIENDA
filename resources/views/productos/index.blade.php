@@ -25,7 +25,24 @@
 @endif
 
 
+
+
+
+@if ($footers->count()>0)
+<button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">
+  Editar Footer
+</button>
+@else
+
+<a href="{{url('footer')}}" style="margin:15px;">Footer</a>
+@endif
+
+
+
+
+
 <a href="{{url('tipo')}}" style="margin:15px;">Tipo de producto</a>
+
 
 
 <!-- Modal edit -->

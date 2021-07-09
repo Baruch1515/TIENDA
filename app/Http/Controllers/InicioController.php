@@ -5,7 +5,7 @@ use App\Models\Categoria;
 use App\Models\Empresa;
 use App\Models\Producto;
 use App\Models\Tipo;
-
+use App\Models\footer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -23,13 +23,14 @@ class InicioController extends Controller
         $categorias = Categoria::all();
         $empresas = Empresa::all();
         $tipos = Tipo::all();
-
+        $footers = footer::all();
         $creates['creates']=Producto::paginate(2);
         $texto = $request->input('texto');
         $creates = Producto::query()
         ->where('nombre', 'LIKE', "%{$texto}%")
-        ->get();
-        return view('welcome', compact('creates','categorias','empresas','tipos'));
+        ->orderBy('id','desc')
+        ->paginate(16);
+        return view('welcome', compact('creates','footers','categorias','empresas','tipos'));
        /*
          $datos['creates']=create::paginate(1);
         return view('welcome',$datos);

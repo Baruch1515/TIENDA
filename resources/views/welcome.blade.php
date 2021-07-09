@@ -63,18 +63,207 @@
 </div>
   </div>
 </div>
+@endforeach
 
-        @endforeach
+
+
+
+
+
+
+<Header>
+
+    </Header>
+    
+    @foreach($footers as $footer)
+    <footer>
+        <div class="container__footer">
+            <div class="box__footer">
+                <div class="logo">
+                </div>
+                <div class="terms">
+                    <p><h5>Direccion</h5>
+                    
+                    {{$footer->direccion}}
+                    <p><h5>Telefono</h5>
+                    {{$footer->telefono}}
+
+                    </p>
+                </div>
+            </div>
+            <div class="box__footer">
+                <h2>Redes Sociales</h2>
+                <a href="{{$footer->facebook}}"> <i class="fab fa-facebook-square"></i> Facebook</a>
+                <a href="{{$footer->twitter}}"><i class="fab fa-twitter-square"></i> Twitter</a>
+                <a href="mailto:{{$footer->correo}}"><i class="fab fa-linkedin"></i> Correo Electronico</a>
+            </div>
+
+        </div>
+
+        <div class="box__copyright">
+            <hr>
+            
+        </div>
+    </footer>
+@endforeach
+    
+
         
+        
+                </div>
+                </div>
                 </div>
     
                        
 
         </div>
-
+        
         </div>
+
+           
     </body>
-         
+
+
+    
+         <style>
+         html {
+  min-height: 100%;
+  position: relative;
+}
+body {
+  margin: 0;
+  margin-bottom: 40px;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  color: white;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+    text-decoration: none;
+}
+
+:root{
+    --color-esqueleto:#EFF3F5;
+}
+
+header{
+    width: 100%;
+    height: 60px;
+    background: var(--color-esqueleto);
+}
+
+.cover{
+    width: 100%;
+    height: 500px;
+    background: var(--color-esqueleto);
+    margin-top: 20px;
+}
+
+.container__article{
+    max-width: 1000px;
+    padding: 0px 20px;
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.container__article .box__article{
+    width: 200px;
+    height: 250px;
+    background: var(--color-esqueleto);
+    margin: 20px;
+}
+
+/*Aquí debajo va el FOOTER*/
+
+footer{
+    width: 100%;
+    padding: 50px 0px;
+    background-image: url(../Images/background-footer.svg);
+    background-size: cover;
+    
+    /*background-color: #d0f0f8;
+    -webkit-mask-image: url("../Images/background-footer.svg");
+    mask-image: url("../Images/background-footer.svg");
+    -webkit-mask-size: cover;
+    mask-size: cover;*/
+}
+
+.container__footer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.box__footer{
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+}
+
+.box__footer .logo img{
+    width: 180px;
+}
+
+.box__footer .terms{
+    max-width: 350px;
+    margin-top: 20px;
+    font-weight: 500;
+    color: #7a7a7a;
+    font-size: 18px;
+}
+
+.box__footer h2{
+    margin-bottom: 30px;
+    color: #343434;
+    font-weight: 700;
+}
+
+.box__footer a{
+    margin-top: 10px;
+    color: #7a7a7a;
+    font-weight: 600;
+}
+
+.box__footer a:hover{
+    opacity: 0.8;
+}
+
+.box__footer a .fab{
+    font-size: 20px;
+}
+
+.box__copyright{
+    max-width: 1200px;
+    margin: auto;
+    text-align: center;
+    padding: 0px 40px;
+}
+
+.box__copyright p{
+    margin-top: 20px;
+    color: #7a7a7a;
+}
+
+.box__copyright hr{
+    border: none;
+    height: 1px;
+    background-color: #7a7a7a;
+}
+         </style>
     
 </html>
 

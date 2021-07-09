@@ -6,6 +6,8 @@ use App\Http\Controllers\InicioController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\TipoController;
+use App\Http\Controllers\FooterController;
+
 
 
 
@@ -28,6 +30,8 @@ Route::resource('productos', ProductoController::class)->middleware('auth');
 Route::resource('/categoria', CategoriaController::class)->middleware('auth');
 Route::resource('/tipo', TipoController::class)->middleware('auth');
 Route::resource('/empresa', EmpresaController::class)->middleware('auth');
+Route::resource('/footer', FooterController::class)->middleware('auth');
+
 
 
 Auth::routes();

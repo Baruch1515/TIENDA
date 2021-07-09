@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Tipo;
+use App\Models\Categoria;
+use App\Models\Producto;
+use App\Models\Empresa;
 use App\Models\footer;
 use Illuminate\Http\Request;
 
@@ -15,7 +18,10 @@ class FooterController extends Controller
     public function index()
     {
         //
-        return view('productos.footer');
+        $empresas = Empresa::all();
+        $categorias = Categoria::all();
+        $tipos = Tipo::all();
+        return view('productos.footer',compact('empresas','categorias','tipos'));
 
     }
 
@@ -73,9 +79,19 @@ class FooterController extends Controller
      * @param  \App\Models\footer  $footer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, footer $footer)
+    public function update(Request $request, $id)
     {
         //
+        $footers = footer::find($id);
+        $footers->facebook = $request->facebook;
+        $footers->twitter = $request->twitter;
+        $footers->correo = $request->correo;
+        $footers->direccion = $request->direccion;
+        $footers->telefono = $request->telefono;
+
+        $footers->save();
+
+        return redirect()->back();
     }
 
     /**

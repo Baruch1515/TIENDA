@@ -168,6 +168,8 @@
       <th scope="col">Descripcion</th>
       <th scope="col">Foto</th>
       <th scope="col">Acciones</th>
+
+    
     </tr>
   </thead>
   <tbody>
@@ -178,7 +180,14 @@
       <th>{{$Producto->nombre}}</th>
       <td>{{$Producto->descripcion}}</td>
       <td><img src="{{asset('storage').'/'.$Producto->foto}}" class="img-fluid img-thumbnail" width="120px"></td>
+
+      
       <td><a href="{{route('productos.edit',$Producto->id)}}" class="btn btn-light" style="color:blue;">Editar</a></td>
+    <td>
+    <button type="button" style="color:green;" class="btn btn-link" data-toggle="modal" data-target="#ver{{$Producto->id}}">
+      Ver mas 
+      </button>
+    </td>
 
 
       <td>
@@ -189,6 +198,36 @@
         </form>
       </td>
     </tr>
+
+
+<!-- Modal del footer -->
+
+<div class="modal fade" id="ver{{$Producto->id}}" tabindex="-1" role="dialog" aria-labelledby="verLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Vista</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <h5>Nombre:</h5>{{$Producto->nombre}} <br><br>
+        <h5>Descripcion:</h5>{{$Producto->descripcion}}<br><br>
+        <h5>Foto:</h5>
+        <img src="{{asset('storage').'/'.$Producto->foto}}" class="img-fluid img-thumbnail" width="120px">
+        <h5>Categoria</h5>
+        
+
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
     @endforeach
   </tbody>

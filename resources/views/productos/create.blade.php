@@ -44,6 +44,31 @@
                     <br>
 
                     <div class="form-group shadow-textarea">
+                       <h5> <label for="">Referencia</label></h5>
+
+                        <input value="" class="form-control form-control-lg"  name="ref" " type="input" / required>
+                    </div>
+                    <br>
+
+                    <div class="form-group shadow-textarea">
+                       <h5> <label for="">Stock</label></h5>
+                        <input value="" class="form-control form-control-lg"  name="stock" " type="number" / required>
+                    </div>
+                    <br>
+
+                    <div class="form-group shadow-textarea">
+                       <h5> <label for="">Ficha Tecnica</label></h5>
+                        <input value="" class="form-control form-control-lg"  name="fichatecnica" " type="text" / required>
+                    </div>
+                    <br>
+
+                    <div class="form-group shadow-textarea">
+                       <h5> <label for="">Talla</label></h5>
+                        <input value="" class="form-control form-control-lg"  name="talla" " type="text" / required>
+                    </div>
+                    <br>
+
+                    <div class="form-group shadow-textarea">
                         <h5><label for="">Categoria:</label></h5>
                         <select name="id_categoria" id="" required>
                             <option value="">---ESCOJA UNA CATEGORIA---</option>

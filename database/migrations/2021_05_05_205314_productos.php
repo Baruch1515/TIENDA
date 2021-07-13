@@ -19,6 +19,10 @@ class Productos extends Migration
             $table->string('nombre');
             $table->string('descripcion',5000);
             $table->string('foto');
+            $table->string('ref');
+            $table->string('stock');
+            $table->string('fichatecnica');
+            $table->string('talla');
             $table->bigInteger('id_categoria')->unsigned();
             $table->unsignedBigInteger('id_tipo');
             $table->foreign('id_categoria')->references('id')->on('categorias');

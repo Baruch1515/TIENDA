@@ -216,8 +216,15 @@
         <h5>Nombre:</h5>{{$Producto->nombre}} <br><br>
         <h5>Descripcion:</h5>{{$Producto->descripcion}}<br><br>
         <h5>Foto:</h5>
-        <img src="{{asset('storage').'/'.$Producto->foto}}" class="img-fluid img-thumbnail" width="120px">
-        <h5>Categoria</h5>
+        <img src="{{asset('storage').'/'.$Producto->foto}}" class="img-fluid img-thumbnail" width="120px"><br><br>
+        <h5>Stock</h5>{{$Producto->stock}}<br><br>
+        <h5>Referencia</h5>{{$Producto->ref}}<br><br>
+        <h5>Referencia</h5>{{$Producto->ref}}<br><br>
+        <h5>Ficha Tecnica</h5>{{$Producto->fichatecnica}}<br><br>
+        <h5>Talla</h5>{{$Producto->talla}}<br><br>
+
+
+
         
 
       </div>

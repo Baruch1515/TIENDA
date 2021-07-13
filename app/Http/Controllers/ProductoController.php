@@ -34,11 +34,12 @@ class ProductoController extends Controller
         $empresas = Empresa::all();
         $tipos = Tipo::all();
         $footers = footer::all();
-
-   
         $texto = $request->input('texto');
         $productos = Producto::query()
-        ->where('nombre', 'LIKE', "%{$texto}%")
+        ->where('id', 'LIKE', "%{$texto}%")
+        ->orwhere('nombre', 'LIKE', "%{$texto}%")
+        ->orwhere('descripcion', 'LIKE', "%{$texto}%")
+        ->orwhere('ref', 'LIKE', "%{$texto}%")
         ->orderBy('id','desc')
         ->paginate(1);
         return view('productos.index', compact('productos','categorias','empresas','tipos','footers'));

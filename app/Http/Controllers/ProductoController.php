@@ -39,6 +39,7 @@ class ProductoController extends Controller
         ->where('id', 'LIKE', "%{$texto}%")
         ->orwhere('nombre', 'LIKE', "%{$texto}%")
         ->orwhere('descripcion', 'LIKE', "%{$texto}%")
+        ->orwhere('fichatecnica', 'LIKE', "%{$texto}%")
         ->orwhere('ref', 'LIKE', "%{$texto}%")
         ->orderBy('id','desc')
         ->paginate(1);

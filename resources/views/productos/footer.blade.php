@@ -34,7 +34,7 @@
 
 
     <h5><span>Telefono</span></h5>
-    <input style="width: 50%;" type="text" placeholder="Telefono"  class="form-control" name="telefono" id="recipient-name"><br>
+    <input style="width: 50%;" type="number" placeholder="Telefono"  class="form-control" name="telefono" id="recipient-name"><br>
 
     <input type="submit" class="btn btn-success" value="Guardar">
    

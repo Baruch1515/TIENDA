@@ -82,10 +82,10 @@
                 <div class="logo">
                 </div>
                 <div class="terms">
-                    <p><h5>Direccion</h5>
+                    <p><h5><b>Direccion</b></h5>
                     
                     {{$footer->direccion}}
-                    <p><h5>Telefono</h5>
+                    <p><h5><b>Telefono</b></h5>
                     {{$footer->telefono}}
 
                     </p>

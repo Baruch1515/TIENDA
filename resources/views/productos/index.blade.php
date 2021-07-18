@@ -8,6 +8,9 @@
 
 <a href="{{url('productos/create')}}" style="margin:15px;">Nuevo Producto</a>
 
+<a href="{{url('bodega')}}" style="margin:15px;">Bodega</a>
+
+
 
 @if ($empresas->count()>0)
 <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">

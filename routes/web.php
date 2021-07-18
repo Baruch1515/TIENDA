@@ -7,6 +7,8 @@ use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\TipoController;
 use App\Http\Controllers\FooterController;
+use App\Http\Controllers\BodegaController;
+
 
 
 
@@ -31,6 +33,8 @@ Route::resource('/categoria', CategoriaController::class)->middleware('auth');
 Route::resource('/tipo', TipoController::class)->middleware('auth');
 Route::resource('/empresa', EmpresaController::class)->middleware('auth');
 Route::resource('/footer', FooterController::class)->middleware('auth');
+Route::resource('/bodega', BodegaController::class)->middleware('auth');
+
 
 
 
@@ -44,3 +48,4 @@ Route::get('tipo-vista/{tipo}', [InicioController::class, 'tipo'])->name('produc
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [ProductoController::class, 'index'])->name('home');
 });
+

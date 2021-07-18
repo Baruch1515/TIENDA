@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use App\Models\Categoria;
-use App\Models\Producto;
-use App\Models\Empresa;
 
+use App\Models\Categoria;
+use App\Models\Empresa;
+use App\Models\Producto;
+use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
 {
@@ -16,11 +16,9 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        //
         $categorias = Categoria::all();
         $empresas = Empresa::all();
-        return view('productos.categoria',compact('categorias','empresas'));
-        
+        return view('productos.categoria', compact('categorias', 'empresas'));
     }
 
     /**
@@ -31,8 +29,6 @@ class CategoriaController extends Controller
     public function create()
     {
         //
-      
-       
 
     }
 
@@ -82,12 +78,11 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-            $categorias = Categoria::find($id);
-            $categorias->nombre = $request->nombre;
-            $categorias->save();
+        $categorias = Categoria::find($id);
+        $categorias->nombre = $request->nombre;
+        $categorias->save();
 
-            return redirect()->back();
+        return redirect()->back();
     }
 
     /**
@@ -97,25 +92,16 @@ class CategoriaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {   
-
+    {
         $categoria = Categoria::find($id);
-        $producto = Producto::where('id_categoria',$id)->first();
-        //
-       
-       if($categoria == null || $producto != null){
+        $producto = Producto::where('id_categoria', $id)->first();
+        if ($categoria == null || $producto != null) {
 
-        return back()->with('info','No puedes eliminar esta categoria ya que esta categoria tiene productos relacionados');
-       }
-        else{
+            return back()->with('info', 'No puedes eliminar esta categoria ya que esta categoria tiene productos relacionados');
+        } else {
             Categoria::destroy($id);
-            return back()->with('infogood','La categoria se elimino correctamente');
-         }
-       
-    }
-        
-    
+            return back()->with('infogood', 'La categoria se elimino correctamente');
+        }
 
-    
+    }
 }
-    

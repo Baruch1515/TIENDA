@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Tipo;
+
 use App\Models\Categoria;
-use App\Models\Producto;
 use App\Models\Empresa;
 use App\Models\footer;
+use App\Models\Tipo;
 use Illuminate\Http\Request;
 
 class FooterController extends Controller
@@ -17,11 +17,10 @@ class FooterController extends Controller
      */
     public function index()
     {
-        //
         $empresas = Empresa::all();
         $categorias = Categoria::all();
         $tipos = Tipo::all();
-        return view('productos.footer',compact('empresas','categorias','tipos'));
+        return view('productos.footer', compact('empresas', 'categorias', 'tipos'));
 
     }
 
@@ -43,8 +42,6 @@ class FooterController extends Controller
      */
     public function store(Request $request)
     {
-        //
-
         $datosproductos = request()->except('_token');
         footer::insert($datosproductos);
         return back();

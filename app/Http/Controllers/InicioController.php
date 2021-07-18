@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Categoria;
 use App\Models\Empresa;
+use App\Models\footer;
 use App\Models\Producto;
 use App\Models\Tipo;
-use App\Models\footer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
 
 class InicioController extends Controller
 {
@@ -19,23 +19,17 @@ class InicioController extends Controller
      */
     public function index(Request $request)
     {
-        //
         $categorias = Categoria::all();
         $empresas = Empresa::all();
         $tipos = Tipo::all();
         $footers = footer::all();
-        $creates['creates']=Producto::paginate(2);
+        $creates['creates'] = Producto::paginate(2);
         $texto = $request->input('texto');
         $creates = Producto::query()
-        ->where('nombre', 'LIKE', "%{$texto}%")
-        ->orderBy('id','desc')
-        ->paginate(16);
-        return view('welcome', compact('creates','footers','categorias','empresas','tipos'));
-       /*
-         $datos['creates']=create::paginate(1);
-        return view('welcome',$datos);
-        
-*/
+            ->where('nombre', 'LIKE', "%{$texto}%")
+            ->orderBy('id', 'desc')
+            ->paginate(16);
+        return view('welcome', compact('creates', 'footers', 'categorias', 'empresas', 'tipos'));
     }
 
     /**
@@ -46,8 +40,6 @@ class InicioController extends Controller
     public function create()
     {
         //
-  
-
     }
 
     /**
@@ -60,9 +52,6 @@ class InicioController extends Controller
     {
         //
     }
-
-    
-
 
     /**
      * Display the specified resource.
@@ -109,30 +98,25 @@ class InicioController extends Controller
         //
     }
 
-    public function  categoria(categoria $categoria)
+    public function categoria(categoria $categoria)
     {
-        //
         $tipos = Tipo::all();
         $categorias = Categoria::all();
         $empresas = Empresa::all();
-       $productos = Producto::where('id_categoria',$categoria->id)
-                    ->paginate('16');
-                    return view('productos.category',compact('categoria','productos','categorias','empresas','tipos'));
+        $productos = Producto::where('id_categoria', $categoria->id)
+            ->paginate('16');
+        return view('productos.category', compact('categoria', 'productos', 'categorias', 'empresas', 'tipos'));
     }
- 
-    public function  tipo(tipo $tipo)
-    {
 
+    public function tipo(tipo $tipo)
+    {
         $tipos = Tipo::all();
         $categorias = Categoria::all();
         $empresas = Empresa::all();
-       $productos = Producto::where('id_tipo',$tipo->id)
-                    ->paginate('16');
-                    return view('productos.tipo-vista',compact('productos','categorias','empresas','tipos'));
-        
-       
-                      
+        $productos = Producto::where('id_tipo', $tipo->id)
+            ->paginate('16');
+        return view('productos.tipo-vista', compact('productos', 'categorias', 'empresas', 'tipos'));
+
     }
- 
- 
+
 }

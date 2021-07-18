@@ -1,54 +1,39 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Categoria;
 use App\Models\Empresa;
-use App\Models\Tipo;
 use App\Models\footer;
-
 use App\Models\Producto;
+use App\Models\Tipo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
 
 class ProductoController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource.z
      *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-/*        $empresas = Empresa::all();
-        $categorias = Categoria::all();
-        $texto = $request->input('texto');
-        $productos = Producto::query()
-        ->where('descripcion', 'LIKE', "%{$texto}%")
-        ->paginate(5);
-        return view('productos.index', compact('productos','categorias','empresas'));
-
-
-*/
         $categorias = Categoria::all();
         $empresas = Empresa::all();
         $tipos = Tipo::all();
         $footers = footer::all();
         $texto = $request->input('texto');
         $productos = Producto::query()
-        ->where('id', 'LIKE', "%{$texto}%")
-        ->orwhere('nombre', 'LIKE', "%{$texto}%")
-        ->orwhere('descripcion', 'LIKE', "%{$texto}%")
-        ->orwhere('fichatecnica', 'LIKE', "%{$texto}%")
-        ->orwhere('ref', 'LIKE', "%{$texto}%")
-        ->orderBy('id','desc')
-        ->paginate(1);
-        return view('productos.index', compact('productos','categorias','empresas','tipos','footers'));
-   /*
-        $datos['creates']=create::paginate(5);
-        return view('productos.index',$datos);
-        */
+            ->where('id', 'LIKE', "%{$texto}%")
+            ->orwhere('nombre', 'LIKE', "%{$texto}%")
+            ->orwhere('descripcion', 'LIKE', "%{$texto}%")
+            ->orwhere('fichatecnica', 'LIKE', "%{$texto}%")
+            ->orwhere('ref', 'LIKE', "%{$texto}%")
+            ->orderBy('id', 'desc')
+            ->paginate(1);
 
+        return view('productos.index', compact('productos', 'categorias', 'empresas', 'tipos', 'footers'));
     }
 
     /**
@@ -62,7 +47,7 @@ class ProductoController extends Controller
         $categorias = Categoria::all();
         $empresas = Empresa::all();
         $tipos = Tipo::all();
-        return view('productos.create',compact('categorias','empresas','tipos'));
+        return view('productos.create', compact('categorias', 'empresas', 'tipos'));
     }
 
     /**
@@ -73,10 +58,9 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $datosproductos = request()->except('_token');
-        if($request->hasFile('foto')){
-            $datosproductos['foto']=$request->file('foto')->store('foto','public');
+        if ($request->hasFile('foto')) {
+            $datosproductos['foto'] = $request->file('foto')->store('foto', 'public');
         }
         Producto::insert($datosproductos);
 
@@ -103,9 +87,7 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
-        //
-        
-        $productos=Producto::findOrFail($id);
+        $productos = Producto::findOrFail($id);
         return view('productos.edit', compact('productos'));
     }
 
@@ -118,30 +100,18 @@ class ProductoController extends Controller
      */
     public function update(Request $request, $id)
     {
-       //EDITA PRODUCO
+        $datosproductos = request()->except(['_token', '_method']);
 
-       $datosproductos =request()->except(['_token','_method']);
+        if ($request->hasFile('foto')) {
+            $productos = Producto::findOrFail($id);
+            Storage::delete('public/' . $productos->foto);
+            $datosproductos['foto'] = $request->file('foto')->store('foto', 'public');
+        }
 
-       if($request->hasFile('foto')){
-       $productos=Producto::findOrFail($id);
-       Storage::delete('public/'.$productos->foto);
-        $datosproductos['foto']=$request->file('foto')->store('foto','public');
-    }
-
-       Producto::where('id','=',$id)->update($datosproductos);
-       $productos=Producto::findOrFail($id);
+        Producto::where('id', '=', $id)->update($datosproductos);
+        $productos = Producto::findOrFail($id);
         return view('productos.edit', compact('productos'));
 
-      /*
-       $datosproductos = request()->except('_token');
-
-       $productos->nombre=$request->input('nombre');
-       $productos->descripcion=$request->input('descripcion');
-
-       $productos=create::findOrFail($id);
-       $productos->save();
-       return redirect()->route('productos.index');
-*/
     }
 
     /**
@@ -152,14 +122,12 @@ class ProductoController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $productos=Producto::findOrFail($id);
+        $productos = Producto::findOrFail($id);
 
-        if(Storage::delete('public/'.$productos->foto)){
+        if (Storage::delete('public/' . $productos->foto)) {
             Producto::destroy($id);
-         
         }
-        
-         return redirect('productos');
+
+        return redirect('productos');
     }
 }

@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Tipo;
+
 use App\Models\Categoria;
-use App\Models\Producto;
 use App\Models\Empresa;
+use App\Models\Producto;
+use App\Models\Tipo;
 use Illuminate\Http\Request;
 
 class TipoController extends Controller
@@ -21,7 +22,7 @@ class TipoController extends Controller
         $categorias = Categoria::all();
         $tipos = Tipo::all();
 
-        return view('productos.tipo',compact('empresas','categorias','tipos'));
+        return view('productos.tipo', compact('empresas', 'categorias', 'tipos'));
     }
 
     /**
@@ -81,10 +82,10 @@ class TipoController extends Controller
     {
         //
         $tipos = Tipo::find($id);
-            $tipos->nombre = $request->nombre;
-            $tipos->save();
+        $tipos->nombre = $request->nombre;
+        $tipos->save();
 
-            return redirect()->back();
+        return redirect()->back();
     }
 
     /**
@@ -96,19 +97,17 @@ class TipoController extends Controller
     public function destroy($id)
     {
         $tipo = Tipo::find($id);
-        $producto = Producto::where('id_tipo',$id)->first();
-        //
-       
-       if($tipo == null || $producto != null){
+        $producto = Producto::where('id_tipo', $id)->first();
 
-        return back()->with('info','Para eliminar este tipo borra los productos que lo contienen');
-      
-       }
-        else{
+        if ($tipo == null || $producto != null) {
+
+            return back()->with('info', 'Para eliminar este tipo borra los productos que lo contienen');
+
+        } else {
             Tipo::destroy($id);
-            return back()->with('infogood','El tipo se elimino correctamente');
-         }
-       
+            //TODO: usa CalmelCase infoGood -> cambia el nombre de la variable no entiendo que hace
+            return back()->with('infogood', 'El tipo se elimino correctamente');
+        }
 
     }
 }

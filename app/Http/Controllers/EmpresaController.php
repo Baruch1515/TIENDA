@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Empresa;
+
 use App\Models\Categoria;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Empresa;
 use App\Models\Producto;
 use App\Models\Tipo;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 class EmpresaController extends Controller
 {
     /**
@@ -16,11 +18,10 @@ class EmpresaController extends Controller
      */
     public function index()
     {
-        //
         $tipos = Tipo::all();
         $categorias = Categoria::all();
         $empresas = Empresa::all();
-        return view('productos.empresa',compact('categorias','empresas','tipos'));
+        return view('productos.empresa', compact('categorias', 'empresas', 'tipos'));
 
     }
 
@@ -31,12 +32,11 @@ class EmpresaController extends Controller
      */
     public function empresa()
     {
-        //
         $categorias = Categoria::all();
         $creates = Producto::all();
         $empresas = Empresa::all();
         $tipos = Tipo::all();
-        return view('empresa-vista',compact('empresas','categorias','creates','tipos'));
+        return view('empresa-vista', compact('empresas', 'categorias', 'creates', 'tipos'));
     }
 
     /**
@@ -47,15 +47,13 @@ class EmpresaController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $datosproductos = request()->except('_token');
-        if($request->hasFile('foto')){
-            $datosproductos['foto']=$request->file('foto')->store('foto','public');
+        if ($request->hasFile('foto')) {
+            $datosproductos['foto'] = $request->file('foto')->store('foto', 'public');
         }
         Empresa::insert($datosproductos);
 
         return redirect('productos');
-
 
     }
 
@@ -90,23 +88,17 @@ class EmpresaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //EDITA EMPRESAAAAA
+        $datosempresas = request()->except(['_token', '_method']);
 
-        $datosempresas=request()->except(['_token','_method']);
+        if ($request->hasFile('foto')) {
+            $empresas = Empresa::findOrFail($id);
+            Storage::delete('public/' . $empresas->foto);
+            $datosempresas['foto'] = $request->file('foto')->store('foto', 'public');
+        }
 
-        if($request->hasFile('foto')){
-        $empresas=Empresa::findOrFail($id);
-        Storage::delete('public/'.$empresas->foto);
-         $datosempresas['foto']=$request->file('foto')->store('foto','public');
-     }
- 
-        Empresa::where('id','=',$id)->update($datosempresas);
-        $empresas=Empresa::findOrFail($id);
-            return back();
-
-
-
-
+        Empresa::where('id', '=', $id)->update($datosempresas);
+        $empresas = Empresa::findOrFail($id);
+        return back();
 
     }
 

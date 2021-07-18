@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+//TODO: el nombre del archivo esta en miniscula
 class Empresa extends Model
 {
-    use HasFactory;
     protected $table = 'empresa';
-    public $timestamps=false;
+    public $timestamps = false;
 }

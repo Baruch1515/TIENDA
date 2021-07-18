@@ -2,17 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Producto;
+use Illuminate\Database\Eloquent\Model;
 
-
+//TODO: el nombre del archivo esta en miniscula
 class Categoria extends Model
-
-
 {
-    public function Producto(){
+    public function Producto()
+    {
         return $this->belongsTo('App\Models\Producto');
     }
-  
+
 }

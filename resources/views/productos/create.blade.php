@@ -50,12 +50,7 @@
                     </div>
                     <br>
 
-                    <div class="form-group shadow-textarea">
-                       <h5> <label for="">Stock</label></h5>
-                        <input value="" class="form-control form-control-lg"  name="stock" " type="number" / required>
-                    </div>
-                    <br>
-
+             
                     <div class="form-group shadow-textarea">
                        <h5> <label for="">Ficha Tecnica</label></h5>
                         <input value="" class="form-control form-control-lg"  name="fichatecnica" " type="text" / required>

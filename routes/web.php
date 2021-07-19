@@ -48,4 +48,3 @@ Route::get('tipo-vista/{tipo}', [InicioController::class, 'tipo'])->name('produc
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [ProductoController::class, 'index'])->name('home');
 });
-

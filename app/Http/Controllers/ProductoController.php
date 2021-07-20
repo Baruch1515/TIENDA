@@ -31,7 +31,7 @@ class ProductoController extends Controller
             ->orwhere('fichatecnica', 'LIKE', "%{$texto}%")
             ->orwhere('ref', 'LIKE', "%{$texto}%")
             ->orderBy('id', 'desc')
-            ->paginate(1);
+            ->paginate(6);
 
         return view('productos.index', compact('productos', 'categorias', 'empresas', 'tipos', 'footers'));
     }

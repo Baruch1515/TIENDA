@@ -20,7 +20,9 @@ class FooterController extends Controller
         $empresas = Empresa::all();
         $categorias = Categoria::all();
         $tipos = Tipo::all();
-        return view('productos.footer', compact('empresas', 'categorias', 'tipos'));
+        $footers = footer::all();
+
+        return view('productos.footer', compact('empresas', 'categorias', 'tipos','footers'));
 
     }
 

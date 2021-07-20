@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Models\Empresa;
 use App\Models\Producto;
+use App\Models\footer;
+
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
@@ -18,7 +20,9 @@ class CategoriaController extends Controller
     {
         $categorias = Categoria::all();
         $empresas = Empresa::all();
-        return view('productos.categoria', compact('categorias', 'empresas'));
+        $footers = footer::all();
+
+        return view('productos.categoria', compact('categorias', 'empresas','footers'));
     }
 
     /**

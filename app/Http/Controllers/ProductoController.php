@@ -47,7 +47,10 @@ class ProductoController extends Controller
         $categorias = Categoria::all();
         $empresas = Empresa::all();
         $tipos = Tipo::all();
-        return view('productos.create', compact('categorias', 'empresas', 'tipos'));
+        $footers =footer::all();
+
+        
+        return view('productos.create', compact('categorias', 'empresas', 'tipos','footers'));
     }
 
     /**
@@ -87,8 +90,12 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
+        $footers = footer::all();
+
+        $empresas = Empresa::all();
+
         $productos = Producto::findOrFail($id);
-        return view('productos.edit', compact('productos'));
+        return view('productos.edit', compact('productos','empresas','footers'));
     }
 
     /**
@@ -109,8 +116,11 @@ class ProductoController extends Controller
         }
 
         Producto::where('id', '=', $id)->update($datosproductos);
+        $empresas = Empresa::all();
+        $footers = footer::all();
+
         $productos = Producto::findOrFail($id);
-        return view('productos.edit', compact('productos'));
+        return view('productos.edit', compact('productos','empresas','footers'));
 
     }
 

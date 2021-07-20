@@ -6,6 +6,8 @@ use App\Models\Categoria;
 use App\Models\Empresa;
 use App\Models\Producto;
 use App\Models\Tipo;
+use App\Models\footer;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,7 +23,9 @@ class EmpresaController extends Controller
         $tipos = Tipo::all();
         $categorias = Categoria::all();
         $empresas = Empresa::all();
-        return view('productos.empresa', compact('categorias', 'empresas', 'tipos'));
+        $footers = footer::all();
+
+        return view('productos.empresa', compact('categorias', 'empresas', 'tipos','footers'));
 
     }
 

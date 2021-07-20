@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Models\Empresa;
 use App\Models\Producto;
+use App\Models\footer;
+
 use App\Models\Tipo;
 use Illuminate\Http\Request;
 
@@ -21,8 +23,10 @@ class TipoController extends Controller
         $empresas = Empresa::all();
         $categorias = Categoria::all();
         $tipos = Tipo::all();
+        $footers = footer::all();
 
-        return view('productos.tipo', compact('empresas', 'categorias', 'tipos'));
+
+        return view('productos.tipo', compact('empresas', 'categorias', 'tipos','footers'));
     }
 
     /**

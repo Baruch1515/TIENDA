@@ -5,6 +5,10 @@ use App\Models\Empresa;
 use App\Models\Categoria;
 use App\Models\Producto;
 use App\Models\Tipo;
+use App\Models\footer;
+use App\Models\Bodega;
+
+
 use Illuminate\Http\Request;
 
 class BodegaController extends Controller
@@ -22,7 +26,11 @@ class BodegaController extends Controller
         $creates = Producto::all();
         $empresas = Empresa::all();
         $tipos = Tipo::all();
-        return view("productos.bodega",compact('categorias','creates','empresas','tipos'));
+        $footers = footer::all();
+        $bodegas = Bodega::all();
+
+
+        return view("productos.bodega",compact('categorias','bodegas','creates','empresas','tipos','footers'));
     }
 
     /**
@@ -44,6 +52,10 @@ class BodegaController extends Controller
     public function store(Request $request)
     {
         //
+        $datosproductos = request()->except('_token');
+        Bodega::insert($datosproductos);
+        return back();
+
     }
 
     /**
@@ -78,6 +90,16 @@ class BodegaController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $bodegas = Bodega::find($id);
+        $bodegas->nombre = $request->nombre;
+        $bodegas->descripcion = $request->descripcion;
+        $bodegas->lugar = $request->lugar;
+        $bodegas->supervisor = $request->supervisor;
+
+
+        $bodegas->save();
+
+        return redirect()->back();
     }
 
     /**

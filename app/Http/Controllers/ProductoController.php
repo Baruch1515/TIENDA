@@ -6,6 +6,8 @@ use App\Models\Categoria;
 use App\Models\Empresa;
 use App\Models\footer;
 use App\Models\Producto;
+use App\Models\Bodega;
+
 use App\Models\Tipo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -23,6 +25,8 @@ class ProductoController extends Controller
         $empresas = Empresa::all();
         $tipos = Tipo::all();
         $footers = footer::all();
+        $bodegas = Bodega::all();
+
         $texto = $request->input('texto');
         $productos = Producto::query()
             ->where('id', 'LIKE', "%{$texto}%")
@@ -33,7 +37,7 @@ class ProductoController extends Controller
             ->orderBy('id', 'desc')
             ->paginate(6);
 
-        return view('productos.index', compact('productos', 'categorias', 'empresas', 'tipos', 'footers'));
+        return view('productos.index', compact('productos', 'categorias', 'empresas', 'tipos', 'footers','bodegas'));
     }
 
     /**

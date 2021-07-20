@@ -14,7 +14,7 @@ class CreateBodegasTable extends Migration
     public function up()
     {
         Schema::create('bodegas', function (Blueprint $table) {
-            $table->id();
+            $table->id()->unique();
             $table->string('nombre');
             $table->string('descripcion');
             $table->string('lugar');

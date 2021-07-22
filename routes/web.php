@@ -8,6 +8,8 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\TipoController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\BodegaController;
+use App\Http\Controllers\MovimientosController;
+
 
 
 
@@ -34,6 +36,8 @@ Route::resource('/tipo', TipoController::class)->middleware('auth');
 Route::resource('/empresa', EmpresaController::class)->middleware('auth');
 Route::resource('/footer', FooterController::class)->middleware('auth');
 Route::resource('/bodega', BodegaController::class)->middleware('auth');
+Route::resource('/movimientos', MovimientosController::class)->middleware('auth');
+
 
 
 

@@ -74,9 +74,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{url('bodega')}}">Administrar Bodegas</a>
-                        <a class="collapse-item" href="utilities-border.html">Nueva Entrada</a>
-                        <a class="collapse-item" href="utilities-animation.html">Nueva Salida</a>
-                        <a class="collapse-item" href="utilities-other.html">Traslado</a>
+                        <a class="collapse-item" href="{{url('movimientos')}}">Movimientos</a>
+
                     </div>
                 </div>
             </li>

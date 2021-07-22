@@ -9,6 +9,7 @@ use App\Models\footer;
 use App\Models\Bodega;
 
 
+
 use Illuminate\Http\Request;
 
 class BodegaController extends Controller
@@ -28,9 +29,11 @@ class BodegaController extends Controller
         $tipos = Tipo::all();
         $footers = footer::all();
         $bodegas = Bodega::all();
+        $productos = Producto::all();
 
 
-        return view("productos.bodega",compact('categorias','bodegas','creates','empresas','tipos','footers'));
+
+        return view("productos.bodega",compact('categorias','bodegas','creates','empresas','tipos','footers','productos'));
     }
 
     /**

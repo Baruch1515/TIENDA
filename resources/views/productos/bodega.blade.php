@@ -31,7 +31,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fab fa-laravel"></i>
                 </div>
@@ -74,9 +74,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{url('bodega')}}">Administrar Bodegas</a>
-                        <a class="collapse-item" href="utilities-border.html">Nueva Entrada</a>
-                        <a class="collapse-item" href="utilities-animation.html">Nueva Salida</a>
-                        <a class="collapse-item" href="utilities-other.html">Traslado</a>
+                        <a class="collapse-item" href="{{url('movimientos')}}">Movimientos</a>
+
                     </div>
                 </div>
             </li>
@@ -349,7 +348,65 @@
                 <button style="margin: 15px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalnuevabodega">
     Nueva Bodega
   </button>
+  <button style="margin: 15px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEntrada">
+      Entrada
+  </button>
+  <button style="margin: 15px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalnuevabodega">
+      Salida
+  </button>
+  <button style="margin: 15px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalnuevabodega">
+      Traslado
+  </button>
            
+
+  <!-- MODAL ENTRADA -->
+
+  <div class="modal fade" id="modalEntrada" tabindex="-1" role="dialog" aria-labelledby="modalEntrada" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Entrada</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{{url('movimientos')}}" method="post">
+          @csrf
+        <div style="text-align: center;" class="form-group shadow-textarea">
+                        <h5><label for="">Bodega:</label></h5>
+                        <select name="id_bodega" id="" required>
+                            <option value="">---ESCOJA UNA BODEGA---</option>
+                            @foreach($bodegas as $Bodega)
+                            <option value="{{ $Bodega['id'] }}">{{ $Bodega['nombre'] }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <br>
+                    <div style="text-align: center;" class="form-group shadow-textarea">
+                        <h5><label for="">Producto:</label></h5>
+                        <select name="id_producto" id="" required>
+                            <option value="">---ESCOJA UNA PRODUCTO---</option>
+                            @foreach($productos as $Producto)
+                            <option value="{{ $Producto['id'] }}">{{ $Producto['nombre'] }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <br>
+
+                    <h5 style="text-align: center;">Stock:</h5>
+                   <center> <input style="text-align: center;" type="number" placeholder="Stock" name="stock"><br><br>
+                   <input style="text-align: center;" type="submit" class="btn btn-success" value="Guardar"><br></center>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- MODAL ENTRADA -->
+
+
+
 <div class="modal fade" id="modalnuevabodega" tabindex="-1" role="dialog" aria-labelledby="modalnuevabodega" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">

@@ -56,6 +56,76 @@ class MovimientosController extends Controller
         return back();
     }
 
+    public function sumaStock(Request $request)
+    {
+            //SUMA DE STOCK
+           
+            $product = productos_bodega::where('id_bodega', '=', $request->id_bodega)->where('id_producto', '=', $request->id_producto)->first();
+            
+            if($product){
+              $product->update(["stock" => $product->stock + $request->stock]);
+            }
+            else{
+                $datosproductos = request()->except('_token');
+                productos_bodega::insert($datosproductos);
+                return back();
+            }
+            
+          
+           // update product
+
+           $categorias = Categoria::all();
+           $creates = Producto::all();
+           $empresas = Empresa::all();
+           $tipos = Tipo::all();
+           $footers = footer::all();
+           $bodegas = Bodega::all();
+           $productos = Producto::all();
+   
+   
+            $product->save();
+            return view("productos.bodega",compact('categorias','bodegas','creates','empresas','tipos','footers','productos'));
+
+            
+    }
+
+
+    public function salidaStock(Request $request){
+        
+       //SUMA DE STOCK
+           
+       $product = productos_bodega::where('id_bodega', '=', $request->id_bodega)->where('id_producto', '=', $request->id_producto)->first();
+            
+       if($product){
+         $product->update(["stock" => $product->stock - $request->stock]);
+       }
+       else{
+           $datosproductos = request()->except('_token');
+           productos_bodega::insert($datosproductos);
+           return back();
+       }
+       
+     
+      // update product
+
+      $categorias = Categoria::all();
+      $creates = Producto::all();
+      $empresas = Empresa::all();
+      $tipos = Tipo::all();
+      $footers = footer::all();
+      $bodegas = Bodega::all();
+      $productos = Producto::all();
+
+
+       $product->save();
+       return view("productos.bodega",compact('categorias','bodegas','creates','empresas','tipos','footers','productos'));
+
+       
+    }
+
+
+
+
     /**
      * Display the specified resource.
      *

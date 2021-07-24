@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class productos_bodega extends Model
 {
     use HasFactory;
+    protected $fillable = ['stock'];
+    protected $guarded = ['stock'];
+
 }
+
+

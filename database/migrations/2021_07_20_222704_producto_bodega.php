@@ -17,11 +17,9 @@ class ProductoBodega extends Migration
             $table->id()->unique();
             $table->bigInteger('id_bodega')->unsigned();
             $table->bigInteger('id_producto')->unsigned();
-
-            $table->string('stock');
+            $table->string('stock')->default(0);
             $table->foreign('id_bodega')->references('id')->on('bodegas');
             $table->foreign('id_producto')->references('id')->on('productos');
-
             $table->timestamps();
         });
     }

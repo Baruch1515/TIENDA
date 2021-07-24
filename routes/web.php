@@ -12,20 +12,6 @@ use App\Http\Controllers\MovimientosController;
 
 
 
-
-
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -37,6 +23,8 @@ Route::resource('/empresa', EmpresaController::class)->middleware('auth');
 Route::resource('/footer', FooterController::class)->middleware('auth');
 Route::resource('/bodega', BodegaController::class)->middleware('auth');
 Route::resource('/movimientos', MovimientosController::class)->middleware('auth');
+Route::post('/bodega/stock/agregar', [MovimientosController::class, 'sumaStock'])->name('sumar.stock');
+Route::post('/bodega/stock/salida', [MovimientosController::class, 'salidaStock'])->name('salida.stock');
 
 
 

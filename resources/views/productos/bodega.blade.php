@@ -351,7 +351,7 @@
   <button style="margin: 15px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEntrada">
       Entrada
   </button>
-  <button style="margin: 15px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalnuevabodega">
+  <button style="margin: 15px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalsalida">
       Salida
   </button>
   <button style="margin: 15px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalnuevabodega">
@@ -371,7 +371,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="{{url('movimientos')}}" method="post">
+        <form action="{{route('sumar.stock')}}" method="post">
           @csrf
         <div style="text-align: center;" class="form-group shadow-textarea">
                         <h5><label for="">Bodega:</label></h5>
@@ -457,11 +457,62 @@
         <input type="submit" class="btn btn-success" value="Guardar">
 
         </form>
+
       </div>   
 		</div>
 	</div>
 </div>   
  
+
+
+<!-- MODAL SALIDA -->
+<div class="modal fade" id="modalsalida" tabindex="-1" aria-labelledby="modalsalida" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Salida</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <form action="{{route('salida.stock')}}" method="post">
+          @csrf
+        <div style="text-align: center;" class="form-group shadow-textarea">
+                        <h5><label for="">Bodega:</label></h5>
+                        <select name="id_bodega" id="" required>
+                            <option value="">---ESCOJA UNA BODEGA---</option>
+                            @foreach($bodegas as $Bodega)
+                            <option value="{{ $Bodega['id'] }}">{{ $Bodega['nombre'] }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <br>
+                    <div style="text-align: center;" class="form-group shadow-textarea">
+                        <h5><label for="">Producto:</label></h5>
+                        <select name="id_producto" id="" required>
+                            <option value="">---ESCOJA UNA PRODUCTO---</option>
+                            @foreach($productos as $Producto)
+                            <option value="{{ $Producto['id'] }}">{{ $Producto['nombre'] }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <br>
+
+                    <h5 style="text-align: center;">Stock:</h5>
+                   <center> <input style="text-align: center;" type="number" placeholder="Stock" name="stock"><br><br>
+                   <input style="text-align: center;" type="submit" class="btn btn-success" value="Guardar"><br></center>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+
   <table class="table">
     <thead>
       <tr>

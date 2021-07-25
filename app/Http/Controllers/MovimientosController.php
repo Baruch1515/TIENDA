@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Models\productos_bodega;
 use App\Models\Empresa;
@@ -12,14 +11,9 @@ use Illuminate\Http\Request;
 
 class MovimientosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
         $categorias = Categoria::all();
         $creates = Producto::all();
         $empresas = Empresa::all();
@@ -28,29 +22,15 @@ class MovimientosController extends Controller
         $bodegas = Bodega::all();
         $productos = Producto::all();
         return view("productos.movimientos",compact('categorias','bodegas','creates','empresas','tipos','footers','productos'));
-        
-
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
         $datosproductos = request()->except('_token');
         productos_bodega::insert($datosproductos);
         return back();
@@ -58,22 +38,17 @@ class MovimientosController extends Controller
 
     public function sumaStock(Request $request)
     {
-            //SUMA DE STOCK
-           
-            $product = productos_bodega::where('id_bodega', '=', $request->id_bodega)->where('id_producto', '=', $request->id_producto)->first();
+        $product = productos_bodega::where('id_bodega', '=', $request->id_bodega)->where('id_producto', '=', $request->id_producto)->first();
             
-            if($product){
-              $product->update(["stock" => $product->stock + $request->stock]);
+        if($product){
+            $product->update(["stock" => $product->stock + $request->stock]);
+            return back();
+                    }
+        else{
+        $datosproductos = request()->except('_token');
+        productos_bodega::insert($datosproductos);
+        return back();
             }
-            else{
-                $datosproductos = request()->except('_token');
-                productos_bodega::insert($datosproductos);
-                return back();
-            }
-            
-          
-           // update product
-
            $categorias = Categoria::all();
            $creates = Producto::all();
            $empresas = Empresa::all();
@@ -81,93 +56,63 @@ class MovimientosController extends Controller
            $footers = footer::all();
            $bodegas = Bodega::all();
            $productos = Producto::all();
-   
-   
-            $product->save();
+           $product->save();
             return view("productos.bodega",compact('categorias','bodegas','creates','empresas','tipos','footers','productos'));
-
-            
     }
 
 
-    public function salidaStock(Request $request){
+
+
+    public function trasladoStock(Request $request){
         
-       //SUMA DE STOCK
-           
+    }
+
+
+
+
+        public function salidaStock(Request $request){
+        
        $product = productos_bodega::where('id_bodega', '=', $request->id_bodega)->where('id_producto', '=', $request->id_producto)->first();
             
        if($product){
          $product->update(["stock" => $product->stock - $request->stock]);
+         return back();
        }
        else{
            $datosproductos = request()->except('_token');
            productos_bodega::insert($datosproductos);
            return back();
        }
-       
-     
-      // update product
 
-      $categorias = Categoria::all();
-      $creates = Producto::all();
-      $empresas = Empresa::all();
-      $tipos = Tipo::all();
-      $footers = footer::all();
-      $bodegas = Bodega::all();
-      $productos = Producto::all();
+        $categorias = Categoria::all();
+        $creates = Producto::all();
+        $empresas = Empresa::all();
+        $tipos = Tipo::all();
+        $footers = footer::all();
+        $bodegas = Bodega::all();
+        $productos = Producto::all();
 
-
-       $product->save();
-       return view("productos.bodega",compact('categorias','bodegas','creates','empresas','tipos','footers','productos'));
-
-       
+        $product->save();
+        return view("productos.bodega",compact('categorias','bodegas','creates','empresas','tipos','footers','productos')); 
     }
 
-
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+    
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        
     }
 }

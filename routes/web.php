@@ -25,6 +25,8 @@ Route::resource('/bodega', BodegaController::class)->middleware('auth');
 Route::resource('/movimientos', MovimientosController::class)->middleware('auth');
 Route::post('/bodega/stock/agregar', [MovimientosController::class, 'sumaStock'])->name('sumar.stock');
 Route::post('/bodega/stock/salida', [MovimientosController::class, 'salidaStock'])->name('salida.stock');
+Route::post('/bodega/stock/traslado', [MovimientosController::class, 'trasladoStock'])->name('traslado.stock');
+
 
 
 

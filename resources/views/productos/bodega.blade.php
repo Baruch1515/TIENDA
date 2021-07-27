@@ -357,7 +357,22 @@
   <button style="margin: 15px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalTraslado">
       Traslado
   </button>
-           
+  @if(session('info'))
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{session('info')}}</strong> 
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+@endif
+@if(session('infobad'))
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{session('infogood')}}</strong> 
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+@endif        
 <!-- MODAL TRASLADO -->
 <div class="modal fade" id="modalTraslado" tabindex="-1" aria-labelledby="modalTraslado" aria-hidden="true">
   <div class="modal-dialog">
@@ -368,13 +383,13 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
       <div class="modal-body">
-        <form action="">
         <form action="{{route('traslado.stock')}}" method="post">
           @csrf
         <div style="text-align: center;" class="form-group shadow-textarea">
-                        <h5><label for="">Bodega Entrante</label></h5>
-                        <select name="id_bodega" id="" required>
+                        <h5><label for="">Bodega Saliente</label></h5>
+                        <select name="id_bodega_saliente" id="" required>
                             <option value="">---ESCOJA UNA BODEGA---</option>
                             @foreach($bodegas as $Bodega)
                             <option value="{{ $Bodega['id'] }}">{{ $Bodega['nombre'] }}</option>
@@ -383,8 +398,8 @@
                     </div>
                     <br>
                     <div style="text-align: center;" class="form-group shadow-textarea">
-                        <h5><label for="">Bodega Saliente</label></h5>
-                        <select name="id_bodega" id="" required>
+                        <h5><label for="">Bodega Entrante</label></h5>
+                        <select name="id_bodega_entrante" id="" required>
                             <option value="">---ESCOJA UNA BODEGA---</option>
                             @foreach($bodegas as $Bodega)
                             <option value="{{ $Bodega['id'] }}">{{ $Bodega['nombre'] }}</option>
@@ -407,7 +422,7 @@
                    <center> <input style="text-align: center;" type="number" placeholder="Stock" name="stock"><br><br>
                    <input style="text-align: center;" type="submit" class="btn btn-success" value="Guardar"><br></center>
 
-        </form>
+
         </form>
       </div>
       <div class="modal-footer">

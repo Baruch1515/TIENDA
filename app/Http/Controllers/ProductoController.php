@@ -74,7 +74,6 @@ class ProductoController extends Controller
         return redirect('productos');
 
     }
-
     /**
      * Display the specified resource.
      *

@@ -52,7 +52,7 @@
         </button>
       </div>
       <div class="modal-body">
-  <img class="card-img-top" src="{{asset('storage').'/'.$Producto->foto}}" alt="Card image cap" style="width:254px; height:224px; float:center;">
+      <img class="card-img-top" src="{{asset('storage').'/'.$Producto->foto}}" alt="Card image cap" style="width:254px; height:224px; float:center;">
      <p>{{$Producto->descripcion}}</p>
       </div>
       <div class="modal-footer">

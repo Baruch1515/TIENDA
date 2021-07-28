@@ -357,8 +357,10 @@
   <tbody>
   @foreach($productos as $producto) 
     <tr>
-    <td scope="row">{{ $producto->nombre }}</td>   
+      
     @foreach($producto->bodegas as $bodega)   
+    
+    <td scope="row">{{ $producto->nombre }}</td> 
       <td scope="row">{{ $bodega->nombre}}</td>      
       <td>{{ $bodega->pivot->stock }}</td>
     </tr>

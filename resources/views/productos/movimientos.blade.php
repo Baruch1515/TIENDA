@@ -344,12 +344,28 @@
                 <!-- End of Topbar -->
 
 
-
-
-                    <h1 style="margin: 15px;">Movimientos</h1>
-
-
-
+<h1>Movimientos</h1>
+  <table class="table table-dark">
+    
+  <thead>
+    <tr>
+      <th scope="col">Producto</th>
+      <th scope="col">Bodega</th>
+      <th scope="col">Stock</th>
+    </tr>
+  </thead>
+  <tbody>
+  @foreach($productos as $producto) 
+    <tr>
+    <td scope="row">{{ $producto->nombre }}</td>   
+    @foreach($producto->bodegas as $bodega)   
+      <td scope="row">{{ $bodega->nombre}}</td>      
+      <td>{{ $bodega->pivot->stock }}</td>
+    </tr>
+    @endforeach
+@endforeach
+  </tbody>
+</table>
 
 
 

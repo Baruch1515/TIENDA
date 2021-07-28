@@ -13,7 +13,10 @@ class Producto extends Model
     {
         return $this->belongsTo('App\Models\tipo');
     }
-    // Este comentario no dice que hace ?
-    //completa las conversaciones WHould o Whouldn´t
     protected $fillable = ['nombre', 'descripcion', 'foto', 'id_categoria', 'id_tipo'];
+    public function bodegas() 
+    {
+      return $this->belongsToMany(Bodega::class, 'productos_bodegas', 'id_producto', 'id_bodega')->withPivot(['stock']);
+    }
+   
 }

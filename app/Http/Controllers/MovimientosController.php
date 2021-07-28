@@ -7,10 +7,12 @@ use App\Models\Producto;
 use App\Models\Tipo;
 use App\Models\footer;
 use App\Models\Bodega;
+
 use Illuminate\Http\Request;
 
 class MovimientosController extends Controller
 {
+    
 
     public function index()
     {
@@ -20,8 +22,10 @@ class MovimientosController extends Controller
         $tipos = Tipo::all();
         $footers = footer::all();
         $bodegas = Bodega::all();
-        $productos = Producto::all();
-        return view("productos.movimientos",compact('categorias','bodegas','creates','empresas','tipos','footers','productos'));
+        $Movimientos = productos_bodega::all();
+        $productos = Producto::with('bodegas')->get();
+        return view("productos.movimientos",compact('categorias','bodegas','creates','empresas','tipos','footers','productos','Movimientos'));
+        
     }
 
     public function create()
@@ -99,10 +103,10 @@ class MovimientosController extends Controller
                 $product_entrante->update(["stock" => $product_entrante->stock + $request->stock]);
               }
 
-              return back();
+              return back()->with('info','Se traslado correctamente');
           } else {
 
-              return back();
+              return back()->with('infobad','Hubo un error revisa que tengas suficiente stock o verifica que ese producto exista en esa bodega');
           }
       }
     }

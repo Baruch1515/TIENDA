@@ -64,7 +64,7 @@
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-store"></i>
@@ -231,7 +231,7 @@
 
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item active">
+            <li class="nav-item">
                       <a href="{{url('categoria')}}"  class="nav-link">
                       <i class="fas fa-list-ul"></i>
                         <span>Categorias</span>
@@ -367,7 +367,7 @@
 @endif
 @if(session('infobad'))
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>{{session('infogood')}}</strong> 
+  <strong>{{session('infobad')}}</strong> 
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>

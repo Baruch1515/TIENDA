@@ -28,6 +28,13 @@ Route::post('/bodega/stock/salida', [MovimientosController::class, 'salidaStock'
 Route::post('/bodega/stock/traslado', [MovimientosController::class, 'trasladoStock'])->name('traslado.stock');
 
 
+///MOVIMIENTOS
+
+Route::get('/entradascrud', [MovimientosController::class, 'entradasVista'])->name('productos.entradascrud');
+Route::get('/salidascrud', [MovimientosController::class, 'salidasVista'])->name('productos.salidascrud');
+Route::get('/trasladoscrud', [MovimientosController::class, 'trasladosVista'])->name('productos.trasladoscrud');
+
+
 
 
 

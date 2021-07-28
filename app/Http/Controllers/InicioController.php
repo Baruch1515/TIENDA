@@ -103,9 +103,11 @@ class InicioController extends Controller
         $tipos = Tipo::all();
         $categorias = Categoria::all();
         $empresas = Empresa::all();
+        $footers = Footer::all();
+
         $productos = Producto::where('id_categoria', $categoria->id)
             ->paginate('16');
-        return view('productos.category', compact('categoria', 'productos', 'categorias', 'empresas', 'tipos'));
+        return view('productos.category', compact('categoria', 'productos', 'categorias', 'empresas', 'tipos','footers'));
     }
 
     public function tipo(tipo $tipo)
@@ -113,9 +115,11 @@ class InicioController extends Controller
         $tipos = Tipo::all();
         $categorias = Categoria::all();
         $empresas = Empresa::all();
+        $footers = Footer::all();
+
         $productos = Producto::where('id_tipo', $tipo->id)
             ->paginate('16');
-        return view('productos.tipo-vista', compact('productos', 'categorias', 'empresas', 'tipos'));
+        return view('productos.tipo-vista', compact('productos', 'categorias', 'empresas', 'tipos','footers'));
 
     }
 

@@ -40,7 +40,9 @@ class EmpresaController extends Controller
         $creates = Producto::all();
         $empresas = Empresa::all();
         $tipos = Tipo::all();
-        return view('empresa-vista', compact('empresas', 'categorias', 'creates', 'tipos'));
+        $footers = Footer::all();
+
+        return view('empresa-vista', compact('empresas', 'categorias', 'creates', 'tipos','footers'));
     }
 
     /**

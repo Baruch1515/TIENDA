@@ -39,7 +39,13 @@
                                     @endforeach
                             </ul>
                         </li>
-                        <ul class="navbar-nav ml-auto" style="position: relative; left: 500px;">
+                        <li class="nav-item">
+                    <form method="get" action="{{route('welcome')}}" style="position: relative; left: 15px;">
+                    <input type="text" class="form-control" placeholder="Busca aqui..." name="texto" aria-label="Username" aria-describedby="basic-addon1">
+                    </form>
+                </li>
+
+                        <ul class="navbar-nav ml-auto" style="position: relative; left: 400px;">
                 <!-- Authentication Links -->
                 @guest
                 @if (Route::has('login'))

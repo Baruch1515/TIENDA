@@ -9,8 +9,8 @@ use App\Http\Controllers\TipoController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\BodegaController;
 use App\Http\Controllers\MovimientosController;
-
-
+use App\Http\Controllers\CartController;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,6 +27,10 @@ Route::post('/bodega/stock/agregar', [MovimientosController::class, 'sumaStock']
 Route::post('/bodega/stock/salida', [MovimientosController::class, 'salidaStock'])->name('salida.stock');
 Route::post('/bodega/stock/traslado', [MovimientosController::class, 'trasladoStock'])->name('traslado.stock');
 
+//checkout
+
+
+
 
 ///MOVIMIENTOS
 
@@ -34,8 +38,8 @@ Route::get('/entradascrud', [MovimientosController::class, 'entradasVista'])->na
 Route::get('/salidascrud', [MovimientosController::class, 'salidasVista'])->name('productos.salidascrud');
 Route::get('/trasladoscrud', [MovimientosController::class, 'trasladosVista'])->name('productos.trasladoscrud');
 
-
-
+Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
+Route::delete('/cartdelete/{id}', [CartController::class, 'delete'])->name('cart.delete');
 
 
 

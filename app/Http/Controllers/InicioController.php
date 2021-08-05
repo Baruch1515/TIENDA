@@ -9,11 +9,15 @@ use App\Models\Producto;
 use App\Models\Tipo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Gloudemans\Shoppingcart\Facades\Cart;
+
 
 class InicioController extends Controller
 {
     public function index(Request $request)
     {
+        $cart = Cart::content();
+        //dd($cart);
         $categorias = Categoria::all();
         $empresas = Empresa::all();
         $tipos = Tipo::all();
@@ -24,7 +28,7 @@ class InicioController extends Controller
             ->where('nombre', 'LIKE', "%{$texto}%")
             ->orderBy('id', 'desc')
             ->paginate(16);
-        return view('welcome', compact('creates', 'footers', 'categorias', 'empresas', 'tipos'));
+        return view('welcome', compact('creates', 'footers', 'categorias', 'empresas', 'tipos','cart'));
     }
 
     public function create()

@@ -8,11 +8,14 @@
     <meta name="author" content="" />
     <title>@foreach($empresas as $Empresa) {{$Empresa->nombre}} @endforeach</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
     <!-- Bootstrap icons-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+  
     <!-- Core theme CSS (includes Bootstrap)-->
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
     <link href="{{asset('libs/principalview/css/styles.css')}}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
 
 <body>
@@ -46,8 +49,13 @@
                             <input type="text" class="form-control" placeholder="Busca aqui..." name="texto" aria-label="Username" aria-describedby="basic-addon1">
                         </form>
                     </li>
+                    <div>
+                        <h5 style="position: relative; left: 30px; top: 1px;"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cart">
+                        <i class="bi bi-cart-fill"></i> Carrito({{ \Gloudemans\Shoppingcart\Facades\Cart::content()->count()}})
+                        </button></h5>
+                    </div>
 
-                    <ul class="navbar-nav ml-auto" style="position: relative; left: 400px;">
+                    <ul class="navbar-nav ml-auto" style="position: relative; left: 350px;">
                         <!-- Authentication Links -->
                         @guest
                         @if (Route::has('login'))
@@ -96,6 +104,12 @@
             </div>
         </div>
     </header>
+    @if(session('addcart'))
+    {{session('addcart')}}
+    @endif
+
+ 
+    
     <!-- Section-->
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
@@ -130,22 +144,66 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">{{$Producto->nombre}}</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
                             </div>
                             <div class="modal-body">
-                                <img class="card-img-top" src="{{asset('storage').'/'.$Producto->foto}}" alt="Card image cap" style="width:254px; height:224px; float:center;">
+                                <img style=" float: left;" class="card-img-top" src="{{asset('storage').'/'.$Producto->foto}}" alt="Card image cap" style="width:254px; height:224px; float:center;">
                                 <p>{{$Producto->descripcion}}</p>
                             </div>
                             <div class="modal-footer">
-
+                                @if($cart->where('id',$Producto->id)->count())
+                                <p style="text-align: center;">Este producto ya esta agregado</p>
+                                @else
+                            <form action="{{route('cart.store')}}" method="POST" >
+                                    @csrf
+                                    <input  type="number"
+                                    value="1"
+                                    name="quantity"
+                               class="text-sm sm:text-base px-2 pr-2 rounded-lg border border-gray-400 py-1 focus:outline-none focus:border-blue-400"
+                               style="width: 50px"/>
+                                    <input type="hidden" name="product_id" value="{{$Producto->id}}">
+                                    <button  type="submit" class="btn btn-primary" data-toggle="modal" ><i style="color:blcak;" class="bi bi-cart-fill"></i>Agregar al carrito</button>
+                                </form>
+                                @endif
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="cart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Carrito de compras</h5>
+      </div>
+      <div class="modal-body">
+      @foreach(Cart::content() as $row) 
+        <p>Producto <strong><?php echo $row->name; ?></strong></p>
+        <p>Precio <b>$</b><strong><?php echo $row->price; ?></strong></p>
+        <p>
+    
+        </p>
+
+        <hr>
+        <form action="{{route('cart.delete', $row->id)}}" method="POST">
+                @csrf
+                @method('DELETE')
+                <input type="hidden" name="id" value="{{$row->id}}" >
+                <button type="submit" class="btn btn-link btn-sm">Vaciar Carrito</button>
+            </form>
+        @endforeach
+        <p>Total  <b>$</b><strong>{{Cart::total()}}</strong></p>
+        
+        <br><br>
+        @if (Auth::guest())
+        <p>No has iniciado sesion</p>          
+                @else
+                <a  target="_blank" href="https://wa.me/573023342189?text=Hola%20buenas%20me%20llamo%20{{auth()->user()->name}}%20y%20estoy%20interesado%20en%20comprar%20los%20siguientes%20productos%20 @foreach(Cart::content() as $row) {{$row->name}} @endforeach Gracias">Completar compra</a>
+                @endif
+      </div>
+    </div>
+  </div>
+</div>
         @endforeach
         </div>
     </section>
@@ -265,10 +323,13 @@
             }
         </style>
     </footer>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{asset('libs/jquery/jquery.min.js')}}"></script>
+      <script src="{{asset('libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+
+      <!-- Custom scripts for all pages-->
+      <script src="{{asset('libs/sbadmin/js/sb-admin-2.min.js')}}"></script>
+
 </body>
 
 </html>

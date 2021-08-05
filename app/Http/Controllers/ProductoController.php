@@ -8,7 +8,7 @@ use App\Models\footer;
 use App\Models\Producto;
 use App\Models\Bodega;
 use App\Models\Tipo;
-
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 

@@ -377,6 +377,12 @@
         </div>
         <br>
 
+        <div style="margin: 30px;" class="form-group shadow-textarea">
+          <h5> <label for="">Precio</label></h5>
+          <input value="" class="form-control form-control-lg" name="price" " type=" number" / required>
+        </div>
+        <br>
+
         <div style="text-align: center;" class="form-group shadow-textarea">
           <h5><label for="">Categoria:</label></h5>
           <select name="id_categoria" id="" required>

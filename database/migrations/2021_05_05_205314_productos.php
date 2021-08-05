@@ -15,13 +15,14 @@ class Productos extends Migration
     {
         
         Schema::create('productos', function (Blueprint $table) {
-            $table->bigIncrements('id')->unique();
+            $table->bigIncrements('id')->unique()->onDelete('set null');
             $table->string('nombre');
             $table->string('descripcion',5000);
             $table->string('foto');
             $table->string('ref');
             $table->string('fichatecnica');
             $table->string('talla');
+            $table->string('price');
             $table->bigInteger('id_categoria')->unsigned();
             $table->unsignedBigInteger('id_tipo');
             $table->foreign('id_categoria')->references('id')->on('categorias');

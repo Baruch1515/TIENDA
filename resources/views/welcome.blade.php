@@ -186,11 +186,11 @@
         </p>
 
         <hr>
-        <form action="{{route('cart.delete', $row->id)}}" method="POST">
+        <form action="{{route('cart.delete', $row->rowId)}}" method="POST">
                 @csrf
                 @method('DELETE')
                 <input type="hidden" name="id" value="{{$row->id}}" >
-                <button type="submit" class="btn btn-link btn-sm">Vaciar Carrito</button>
+                <button type="submit" class="btn btn-link btn-sm">Eliminar</button>
             </form>
         @endforeach
         <p>Total  <b>$</b><strong>{{Cart::total()}}</strong></p>

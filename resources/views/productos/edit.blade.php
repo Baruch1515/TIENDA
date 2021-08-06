@@ -377,6 +377,12 @@
               <br>
 
               <div class="form-group shadow-textarea">
+                <h4> <label for="exampleFormControlTextarea6">Precio</label></h4>
+                <textarea class="form-control z-depth-1" id="exampleFormControlTextarea6" name="price" rows="3" placeholder="">{{$productos->talla}}</textarea>
+              </div>
+              <br>
+
+              <div class="form-group shadow-textarea">
                 <img src="{{asset('storage').'/'.$productos->foto}}" width="120px">
                 <h4> <label for="">Foto</label></h4>
                 <label for=""></label>

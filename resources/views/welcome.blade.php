@@ -10,7 +10,8 @@
     <!-- Favicon-->
 
     <!-- Bootstrap icons-->
-  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+
     <!-- Core theme CSS (includes Bootstrap)-->
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
@@ -170,7 +171,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="cart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="cart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -326,6 +327,7 @@
     <script src="{{asset('libs/jquery/jquery.min.js')}}"></script>
       <script src="{{asset('libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
       <!-- Custom scripts for all pages-->
       <script src="{{asset('libs/sbadmin/js/sb-admin-2.min.js')}}"></script>

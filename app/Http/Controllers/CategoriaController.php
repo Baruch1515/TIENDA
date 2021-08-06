@@ -6,6 +6,7 @@ use App\Models\Categoria;
 use App\Models\Empresa;
 use App\Models\Producto;
 use App\Models\footer;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 use Illuminate\Http\Request;
 

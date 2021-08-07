@@ -56,7 +56,7 @@
                         </button></h5>
                     </div>
 
-                    <ul class="navbar-nav ml-auto" style="position: relative; left: 350px;">
+                    <ul class="navbar-nav ml-auto" style="position: relative; left: 225px;">
                         <!-- Authentication Links -->
                         @guest
                         @if (Route::has('login'))
@@ -126,7 +126,11 @@
                                 <!-- Product name-->
                                 <h5 class="fw-bolder">{{$Producto->nombre}}</h5>
                                 <!-- Product price-->
-
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <!-- Product price-->
+                                    $r{{$Producto->price}}
+                                </div>
                             </div>
                         </div>
                         <!-- Product actions-->

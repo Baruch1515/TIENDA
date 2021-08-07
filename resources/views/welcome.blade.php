@@ -182,16 +182,18 @@
         <p>Producto <strong><?php echo $row->name; ?></strong></p>
         <p>Precio <b>$</b><strong><?php echo $row->price; ?></strong></p>
         <p>
-    
-        </p>
-
-        <hr>
         <form action="{{route('cart.delete', $row->rowId)}}" method="POST">
                 @csrf
                 @method('DELETE')
                 <input type="hidden" name="id" value="{{$row->id}}" >
-                <button type="submit" class="btn btn-link btn-sm">Eliminar</button>
+                <button type="submit" class="btn btn-link btn-sm">Eliminar del carrito</button>
             </form>
+        </p>
+
+        </p>
+
+        <hr>
+      
         @endforeach
         <p>Total  <b>$</b><strong>{{Cart::total()}}</strong></p>
         

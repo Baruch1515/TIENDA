@@ -129,7 +129,7 @@
                                 <div class="text-center">
                                     <!-- Product name-->
                                     <!-- Product price-->
-                                    $r{{$Producto->price}}
+                                    ${{$Producto->price}}
                                 </div>
                             </div>
                         </div>

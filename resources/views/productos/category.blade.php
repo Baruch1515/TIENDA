@@ -115,6 +115,11 @@
                                 <!-- Product name-->
                                 <h5 class="fw-bolder">{{$Producto->nombre}}</h5>
                                 <!-- Product price-->
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <!-- Product price-->
+                                    $r{{$Producto->price}}
+                                </div>
 
                             </div>
                         </div>

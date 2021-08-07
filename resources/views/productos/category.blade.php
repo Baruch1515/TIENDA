@@ -52,7 +52,7 @@
                         </button></h5>
                     </div>
 
-                    <ul class="navbar-nav ml-auto" style="position: relative; left: 350px;">
+                    <ul class="navbar-nav ml-auto" style="position: relative; left: 225px;">
                         <!-- Authentication Links -->
                         @guest
                         @if (Route::has('login'))
